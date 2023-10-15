@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: karla;
 }
 
 .App-logo {
@@ -35,4 +36,138 @@
   to {
     transform: rotate(360deg);
   }
+}
+.container{
+  display: flex;
+  flex-wrap: wrap;
+}
+nav{
+  font-family: karla;
+  min-height: 60px;
+  font-size: 20px;
+  color: white;
+  
+}
+nav ul{
+  gap:40px;
+}
+nav li a{
+  text-decoration: none;
+  color: black;
+}
+
+footer{
+  background-color: #495E57;
+  justify-content: space-evenly;
+}
+
+footer h3{
+  color: #F4CE14;
+  font-size: 20px;
+  font-family: karla;
+}
+
+footer li a{
+  text-decoration: none;
+  color: #EDEFEE;
+  margin-left:-37px;
+  font-size: 16px;
+}
+
+.button{
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background-color: #F4CE14;
+  border-radius: 16px;
+  height: 50px;
+  font-weight: 700;
+}
+
+h1{
+  font-size: 64px;
+  font-family: Markazi Text;
+}
+h2{
+  font-size: 40px;
+  font-family: Markazi Text;
+}
+h3{
+  font-size: 20px;
+}
+h3{
+  font-size: 18px;
+}
+p{
+  font-size: 16px;
+}
+span{
+  font-size: 16px;
+  font-weight: 600;
+}
+.hero{
+  justify-content: center;
+  gap:104px;
+  align-items: center;
+  background-color: #495E57;
+}
+.hero img{
+  width: 390px;
+  border-radius: 20px;
+  position: relative;
+  top:70px;
+}
+.highlights{
+  margin: 130px auto; 
+}
+.highlights .cards{
+  gap:25px;
+  height: 476px;
+  width: 325px;
+  background-color: #F2E8E8;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.card img{
+  width: 100%;
+}
+
+.testimonial{
+  background-color: #495E57;
+}
+.testimonial .rating{
+  justify-content: center;
+  gap:20px;
+  
+}
+
+.rating-box{
+  width: 200px;
+  height: 175px;
+  border-radius: 16px;
+  background: #EDEFEE;
+}
+.rating-box img{
+  width: 50px;
+}
+
+.about{
+  justify-content: center;
+  gap:50px;
+}
+
+.about p{
+  margin-top: 40px;
+}
+
+.about .img1{
+  position: relative;
+  top:100px;
+}
+
+.about .img2{
+  position: relative;
+  right:-100px;
 }

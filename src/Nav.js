@@ -1,8 +1,8 @@
 function Nav(){
     return (
-        <nav>
-            <img src="./logo.jpg" alt="little lemon" width="100px"/>
-            <ul type="none">
+        <nav class="container">
+            <img src="./logo.jpg" alt="little lemon" height="50px"/>
+            <ul type="none" class="container">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Menu</a></li>
