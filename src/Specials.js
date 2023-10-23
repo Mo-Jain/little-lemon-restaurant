@@ -1,6 +1,7 @@
 export default function Specials(){
     return (
         <div className="highlights">
+            <div>
             <div className="heading">
                 <h2>This Weeks Specials</h2>
                 <p className="button">Online Menu</p>
@@ -50,6 +51,7 @@ export default function Specials(){
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );

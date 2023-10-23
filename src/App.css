@@ -7,20 +7,99 @@
   display: flex;
   flex-wrap: wrap;
 }
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
 nav{
-  font-family: karla;
-  min-height: 60px;
-  font-size: 20px;
-  color: white;
-  justify-content: center;
+  z-index: 10001;
+}
+nav {
+  padding: 10px 13%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
-nav ul{
-  gap:40px;
+
+nav ul li {
+  display: inline-block;
+  padding: 1em;
 }
-nav li a{
-  text-decoration: none;
-  color: black;
+
+nav ul li a{
+  color: #000;
+}
+
+nav ul li a:hover{
+  text-decoration: underline solid #495E57;
+  
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 5px 0;
+}
+
+
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links.visible {
+  flex-direction: column;
+  position: absolute;
+  top: 65px;
+  right: 0;
+  width: 100%;
+  background-color: #495E57;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+@media (min-width: 1080px) {
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 768px){
+  .menu-icon {
+    display: block;
+  }
+  .hero img{
+    display: none;
+  }
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.visible {
+    display: flex;
+    background: #333333;
+    z-index: 1000;
+    padding: 20px 0;
+  }
+
+  .navbar{
+    background:#fff;
+    padding: 10px 8%;
+  }
+
+  nav ul li a{
+    color: #fff;
+  }
+
+  .bar{
+    background: #333333;
+  }
 }
 
 footer{
@@ -43,15 +122,16 @@ footer li a{
 }
 
 .button{
-  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
   background-color: #F4CE14;
   border-radius: 16px;
-  height: 50px;
   font-weight: 700;
+  padding: 14px 18px;
+  border: none;
+  cursor: pointer;
 }
 
 h1{
@@ -83,6 +163,7 @@ span{
   gap:104px;
   align-items: center;
   background-color: #495E57;
+  height: 400px;
 }
 .hero .content{
   width: 404px;
@@ -103,25 +184,29 @@ span{
   position: relative;
   top:70px;
 }
-.highlights{
-  margin: 130px 210px;
-}
 
+.highlights{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 110px 0px;
+}
 .highlights .heading{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+.card{
+  gap:20px;
+  margin-top: 40px;
 }
 .card .dish{
   width: 280px;
   height: 185px;
   border-radius: 20px 20px 0px 0px;
 }
-.card{
-  gap:20px;
-  margin-top: 40px;
-}
+
 .highlights .cards{
-  gap:25px;
+  gap:15px;
   height: 253px;
   width: 245px;
   background-color: #F2E8E8;
