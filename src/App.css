@@ -127,17 +127,50 @@ span{
   font-size: 16px;
   font-weight: 600;
 }
-.hero{
+/* .hero{
   justify-content: center;
   gap:104px;
   align-items: center;
   background-color: #495E57;
   height: 400px;
+} */
+.contain{
+  background-color: #495E57;
 }
-.hero .content{
-  width: 404px;
+.hero{
+  padding:20px 0;
+  display:grid; 
+  grid-template-areas:
+    "head head"
+    "sub  main"
+    "para  main"
+    "button  main";
+  height: 400px;
+  justify-content: center;
   color:#EDEFEE;
+  gap:0;
+  grid-template-rows: 80px 80px 140px 70px;
+  grid-template-columns: 45% 45%
 }
+.hero h1{
+  grid-area: head;
+}
+.hero h2{
+  grid-area: sub;
+}
+.hero p{
+  grid-area: para;
+  width: 50%;
+  margin:0;
+  height: 10% ;
+}
+.hero button{
+  grid-area: button;
+}
+.hero img{
+  grid-area: main;
+}
+
 .hero .content .button{
   color:black;
   margin-top: 30px;
@@ -145,15 +178,32 @@ span{
 .hero h1{
   color: #F4CE14;
 }
-
-.hero img{
-  width: 390px;
-  height: 430px;
-  border-radius: 20px;
-  position: relative;
-  top:70px;
+@media(min-width:770px){
+  .hero {
+    padding-left: 10%;
+  }
+  .hero img{
+    max-width: 390px;
+    height: 425px;
+    border-radius: 20px;
+    position: relative;
+  }
 }
-
+@media screen and (max-width: 770px){
+  .hero img{
+    width:80%;
+    min-width: 156px;
+    min-height:229px;
+    max-height: 270px;
+    margin:8%;
+  }
+  .hero p{
+    width: 100%;
+  }
+  h1{
+    font-size: 52px;
+  }
+}
 .highlights{
   display: flex;
   justify-content: center;
@@ -256,7 +306,7 @@ span{
 .about p{
   margin-top: 40px;
   color: #EE9972;
-  width:400px;
+  max-width:400px;
 }
 .about img{
   width:415px;
@@ -320,11 +370,7 @@ form #submit{
     cursor: pointer;
   }
 }
-@media screen and (max-width: 910px){
-  .hero img{
-    display: none;
-  }
-}
+
 @media screen and (max-width: 770px){
   .menu-icon {
     display: block;
@@ -333,7 +379,9 @@ form #submit{
   .nav-links {
     display: none;
   }
-
+  .about img{
+    display: none;
+  }
   .nav-links.visible {
     display: flex;
     background: #333333;
