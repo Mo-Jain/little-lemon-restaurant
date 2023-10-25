@@ -1,7 +1,7 @@
 export default function Specials(){
     return (
         <div className="highlights">
-            <div>
+            <div className="container">
             <div className="heading">
                 <h2>This Weeks Specials</h2>
                 <p className="button">Online Menu</p>
