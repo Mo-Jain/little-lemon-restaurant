@@ -66,7 +66,7 @@ export default function BookingPage(props){
                                 <option>Anniversary</option>
                             </select>
                         
-                            <input id="submit" className={`${getIsFormValid ? "disabled":""}`} type="submit" value="Make Your reservation" style={{marginBottom:"30px"}} disabled={!getIsFormValid()}/>
+                            <input id="submit" className={!getIsFormValid() ? "disabled":""} type="submit" value="Make Your reservation" style={{marginBottom:"30px"}} disabled={!getIsFormValid()}/>
                         </div>
                     </fieldset>
                 </form>

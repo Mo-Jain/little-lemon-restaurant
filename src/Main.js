@@ -3,11 +3,8 @@ import Booking from './Booking';
 import Homepage from './Homepage';
 import ConfirmedBooking from "./ConfirmedBooking";
 import {navigate, Routes, Route, useNavigate } from "react-router-dom";
-const Main = () => {
 
-    // const [availableTimes, setAvailableTimes] = useState(["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"])
-
-    //Chrome was blocking running the script on the index page so I added it here. "https://chromestatus.com/feature/5629709824032768"
+function Main(){
     const seededRandom = function (seed) {
         var m = 2**35 - 31;
         var a = 185852;
@@ -31,36 +28,34 @@ const Main = () => {
         }
         return result;
     };
-    const submitAPI = function(formData) {
+    const submitAPI = function(formData){
         return true;
-    };
-
-    const initialState = {availableTimes:  fetchAPI(new Date())}
-    const [state, dispatch] = useReducer(updateTimes, initialState);
-
-    function updateTimes(state, date) {
-        return {availableTimes: fetchAPI(new Date(date))}
     }
+    const initialState = {availableTimes:fetchAPI(new Date())};
+    const [state,dispatch] = useReducer(updateTimes,initialState);
+
+    function updateTimes(state,date){
+        return {availableTimes:fetchAPI(new Date(date))} 
+    }
+
     const navigate = useNavigate();
-    function submitForm (formData) {
-        if (submitAPI(formData)) {
-            navigate("/confirmed")
+    function submitForm(formData){
+        if(submitAPI(formData)){
+            navigate("/confirmed");
         }
     }
-
-    return(
-        <main className="main">
+    return (
+        <main>         
             <Routes>
-                <Route path="/" element={<Homepage />} />
+                <Route index element={<Homepage />} />
                 <Route path="/booking" element={<Booking availableTimes={state} dispatch={dispatch} submitForm={submitForm}/>} />
                 <Route path="/confirmed" element={<ConfirmedBooking/> } />
             </Routes>
         </main>
-
-
-    )
+    );
 }
 
 export default Main;
 
 
+<Route index element={<Homepage />} />
