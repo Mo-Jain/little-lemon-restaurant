@@ -17,7 +17,7 @@ export default function Specials(){
                         <p>The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. 
                         </p>
                         <div className="container">
-                            <h4>Order a delivery</h4>
+                            <span>Order a delivery</span>
                             <img className="icon" src="assets/bike_icon.jpg" />
                         </div>
                     </div>
@@ -32,7 +32,7 @@ export default function Specials(){
                         <p>The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. 
                         </p>
                         <div className="container">
-                            <h4>Order a delivery</h4>
+                        <span>Order a delivery</span>
                             <img className="icon" src="assets/bike_icon.jpg" />
                         </div>
                     </div>
@@ -46,7 +46,7 @@ export default function Specials(){
                         </div>
                         <p>Our trademark dessert coming right from best chefs kitchen to fulfill cravings with the pinch of lemon in it.</p>
                         <div className="container">
-                            <h4>Order a delivery</h4>
+                        <span>Order a delivery</span>
                             <img className="icon" src="assets/bike_icon.jpg" />
                         </div>
                     </div>

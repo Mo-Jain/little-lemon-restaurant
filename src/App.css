@@ -102,7 +102,11 @@ footer li a{
   cursor: pointer;
   max-height:45px;
 }
-
+.button:hover{
+  background-color: #F4CE14;
+  opacity: 80%;
+  text-decoration: underline;
+}
 h1{
   font-size: 64px;
   font-family: Markazi Text,serif;
@@ -178,18 +182,18 @@ span{
 .hero h1{
   color: #F4CE14;
 }
-@media(min-width:770px){
+@media(min-width:860px){
   .hero {
     padding-left: 10%;
   }
   .hero img{
-    max-width: 390px;
+    width: 380px;
     height: 425px;
     border-radius: 20px;
     position: relative;
   }
 }
-@media screen and (max-width: 770px){
+@media screen and (max-width: 860px){
   .hero img{
     width:80%;
     min-width: 156px;
@@ -252,6 +256,15 @@ span{
   margin-top: auto;
   color:#EE9972;
 }
+.card span{
+  margin-top: auto;
+  color:#EE9972;
+  font-weight: 700;
+}
+.card span:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
 .cards img.icon{
   width: 17px;
   margin-top: 10px;
@@ -303,14 +316,17 @@ span{
 .content p{
   font-size: 16px;
 }
+.content h1,.content h2{
+  color: #495E57;
+}
 .about p{
   margin-top: 40px;
   color: #EE9972;
   max-width:400px;
 }
 .about img{
-  width:415px;
-  height: 290px;
+  width:355px;
+  height: 210px;
 }
 .about .img1{
   margin-top:109px;
