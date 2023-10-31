@@ -3,7 +3,6 @@ import Booking from './Booking';
 import Homepage from './Homepage';
 import ConfirmedBooking from "./ConfirmedBooking";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import icon from "../src/img/wine.png";
 
 function Main(){
     const seededRandom = function (seed) {

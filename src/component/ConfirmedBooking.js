@@ -3,19 +3,16 @@ import Dropdown from "./Dropdown";
 import { faChampagneGlasses } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
-import Calendar from 'react-calendar';
+import React from "react";
+import 'react-calendar/dist/Calendar.css';
+import DatePicker from "./DatePicker.tsx";
 
 
 
 const ConfirmedBooking = ({availableTimes})=>{
     const ocassion = ["Birthday","Engagement","Anniversary"];
     const diner = [1,2,3,4,5,6,7,8,9,10];
-    const [value, setValue] = useState(new Date());
-
-    const onChange = (e) =>{
-        setValue(e.target.value);
-    }
+    
     return(
         <header style={{backgroundColor:"#F4CE14",height:"1000px",padding:"30px"}}>
             <div className="header">
@@ -28,7 +25,7 @@ const ConfirmedBooking = ({availableTimes})=>{
                 <Dropdown heading={"Time"} list={availableTimes.availableTimes} label={"pm"} icon={faClock} placeholder={"Select Time"}/>
             </section>
             <div>
-                <Calendar  value={value} />
+                <DatePicker/>
             </div>
         </header>
     );
