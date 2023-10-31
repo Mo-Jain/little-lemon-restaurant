@@ -1,8 +1,9 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import Booking from './Booking';
 import Homepage from './Homepage';
 import ConfirmedBooking from "./ConfirmedBooking";
-import {navigate, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import icon from "../src/img/wine.png";
 
 function Main(){
     const seededRandom = function (seed) {
@@ -18,11 +19,11 @@ function Main(){
         let result = [];
         let random = seededRandom(date.getDate());
 
-        for(let i = 17; i <= 23; i++) {
+        for(let i = 5; i <= 11; i++) {
             if(random() < 0.5) {
                 result.push(i + ':00');
             }
-            if(random() < 0.5) {
+            if(random() >= 0.5) {
                 result.push(i + ':30');
             }
         }
@@ -44,12 +45,16 @@ function Main(){
             navigate("/confirmed");
         }
     }
+    
+
+    const[selected,setSelected] = useState("Occassion");
+    
     return (
         <main>         
             <Routes>
                 <Route index element={<Homepage />} />
                 <Route path="/booking" element={<Booking availableTimes={state} dispatch={dispatch} submitForm={submitForm}/>} />
-                <Route path="/confirmed" element={<ConfirmedBooking/> } />
+                <Route path="/confirmed" element={<ConfirmedBooking selected={selected} setSelected={setSelected} availableTimes={state}/> } />
             </Routes>
         </main>
     );

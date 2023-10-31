@@ -16,6 +16,7 @@ export default function BookingPage(props){
     const getIsFormValid = () => {    
         return (
           date &&
+          guest &&
           time !== "Select a time" &&
           occassion !== "Occassion"
         );
@@ -54,7 +55,7 @@ export default function BookingPage(props){
                             </select>
                             
                             <label for="guests">Number of guests*</label>
-                            <input type="number" class ="input-field" placeholder="1" min="1" max="10" id="guests" value={guest} onChange={(e) =>{
+                            <input type="number" class ="input-field" placeholder="Enter Number" min="1" max="10" id="guests" value={guest} onChange={(e) =>{
                                                                         setGuest(e.target.value);
                                                                     }}/>
                             <label for="occasion">Occasion*</label>

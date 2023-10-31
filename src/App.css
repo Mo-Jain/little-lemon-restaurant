@@ -53,15 +53,15 @@ nav ul li a:hover{
 }
 
 .nav-links.visible {
-  flex-direction: column;
-  position: absolute;
-  top: 65px;
+  
   right: 0;
   width: 100%;
   background-color: #495E57;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  top: 65px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -380,6 +380,9 @@ form #submit{
   border-radius: 8px;
   border: none;
 }
+.confirm{
+  height:1000px;
+}
 @media (min-width: 768px) {
   .menu-icon {
     display: none;
@@ -398,13 +401,6 @@ form #submit{
   .about img{
     display: none;
   }
-  .nav-links.visible {
-    display: flex;
-    background: #333333;
-    z-index: 1000;
-    padding: 20px 0;
-  }
-
   .navbar{
     background:#fff;
     padding: 10px 8%;
@@ -417,4 +413,96 @@ form #submit{
   .bar{
     background: #333333;
   }
+}
+.dropdown-select p{
+  padding:10px;
+  color:#495E57;
+  z-index: -100;
+}
+.dropdown{
+  width: 230px;
+  font-size: 16px;
+}
+.dropdown-content{
+  display: grid;
+  width: 100%;
+}
+.dropdown-btn{
+  padding:15px;
+  width: 100%;
+  height: 20px;
+  border-radius: 8px;
+  background-color: #EDEFEE;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 1px 2px 1px 1px rgb(0,0,0,0.2);
+  cursor: pointer;
+  font-weight: 700;
+  color: #495E57;
+}
+.selected{
+  color: #EDEFEE;
+  background-color: #495E57;
+  transition: 0.4s;
+}
+
+
+.arrow{
+  width: 7px;
+  height:7px;
+  border-right: 2px solid #495E57;
+  border-bottom: 2px solid #495E57;
+  transition: 0.3s;
+}
+.arrow{
+  width: 7px;
+  height:7px;
+  border-right: 2px solid #495E57;
+  border-bottom: 2px solid #495E57;
+  transition: 0.3s;
+}
+.up{
+  rotate: -135deg;
+  position: relative;
+  top:5px;
+}
+.down{
+  rotate: 45deg;
+}
+.select{
+  border-color: #EDEFEE ;
+}
+.dropdown-content {
+  margin: 5px 0px;
+  z-index: 5000;
+  display: grid;
+  align-items: center;
+  position: absolute;
+  width: inherit;
+}
+.dropdown .grid{
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+}
+
+.dropdown-content .dropdown-item{
+  padding:15px;
+  width: 100%;
+  height: 20px;
+  background-color: #EDEFEE;
+  border-bottom: 1px dotted black;
+  text-align: center;
+  cursor: pointer;
+  /* transition: 1s linear; */
+  color: #495E57;
+  font-weight: 700;
+}
+.dropdown-item:hover{
+  background-color: #b5c0bb;
+  transition: all 0.4s linear;
+}
+.icon{
+  margin-right: -13px;
+  font-size: 22px;
 }
