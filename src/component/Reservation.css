@@ -1,0 +1,194 @@
+*{
+  box-sizing: border-box;
+  font-family: karla;
+}
+.reservation{
+    padding:40px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color:#333333;
+    background-color: #F4CE14;
+    transition: all 0.2s ease-in-out;
+  }
+.reservation .res{
+  width: max-content;
+  background-color:#F4CE14;
+
+}
+.reservation-content{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr ;
+  justify-content: center;
+  height:200px;
+  column-gap: 23%;
+}
+
+.reservation h1{
+  font-size: 64px;
+  color:#495E57;
+  font-family: Markazi Text, serif;
+  margin-bottom: 30px;
+  text-align: left;
+}
+.reservation .seating{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 30px 0px;
+  flex-wrap: wrap;
+}
+.seating .seating_option input{
+  cursor: pointer;
+}
+.reservation .seating label{
+  padding:15px;
+  color:#333333;
+  font-family: karla;
+  font-weight: 600;
+  cursor: pointer;
+}
+.reservation .seating input{
+  background-color: #F4CE14;
+}
+
+.images img{
+  width: 240px;
+  height: 190px;
+  border-radius: 8px;
+}
+.image_center{
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+  /* width: max-content;   */
+}
+.images{
+  
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap:15px;
+}
+.reserve_button{
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background-color: #495E57;
+  border-radius: 16px;
+  font-weight: 700;
+  padding: 14px 18px;
+  border: none;
+  cursor: pointer;
+  max-height:45px;
+  color:#EDEFEE;
+}
+.reserve_button:hover{
+  background-color: #F4CE14;
+  color: #495E57;
+  transition: all 0.2s ease-in;
+}
+
+.states{
+  
+  width: 390px;
+  padding:20px;
+}
+.states_link{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: space-between;
+  align-items: center;
+  gap:20px;
+}
+.states .seating_state{
+  text-align: center;
+  font-weight: 700;
+  color: #333333;
+  font-size: 20px;
+}
+.state{
+  display: flex;
+  cursor: pointer;
+  color:#495E57;
+}
+
+.states .state.red{
+  color: red;
+}
+.state span{
+  margin: 0 30px;
+  font-size: 16px;
+  width: max-content;
+}
+
+.content .input{
+  margin: 15px 0;
+}
+.content input{
+  padding: 7px 15px;
+  width: 390px;
+  height:45px;
+  font-size: 16px;
+  color: black;
+  border-radius: 8px;
+  border:1px solid black;
+}
+.content input:focus{
+  outline: none;
+}
+textarea{
+  padding: 10px 15px;
+  width: 390px;
+  height:130px;
+  font-size: 16px;
+  color: black;
+  border-radius: 8px;
+  border:1px;
+  border:1px solid black;
+}
+textarea:focus{
+  outline: none;
+}
+
+.reservation #content{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 30px;
+}
+.state_label{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.state_label .invalid{
+  color: red;
+  width: 42px;
+}
+
+
+.seating_option input{
+  cursor: pointer;
+}
+.reservation .seating_option label{
+  padding:15px;
+  color:#333333;
+  font-family: karla;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.states .seating_state.red{
+  color: red;
+}
+
+#seating{
+  margin: 15px 0px;
+}

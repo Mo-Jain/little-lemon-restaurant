@@ -3,6 +3,7 @@ import Booking from './Booking';
 import Homepage from './Homepage';
 import ConfirmedBooking from "./ConfirmedBooking";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import Reservation2 from "./Reservation2.js";
 
 function Main(){
     const seededRandom = function (seed) {
@@ -33,6 +34,11 @@ function Main(){
     }
     const initialState = {availableTimes:fetchAPI(new Date())};
     const [state,dispatch] = useReducer(updateTimes,initialState);
+    const [occassion,setOccassion] = useState("Occassion");
+    const [diner,setDiner] = useState("No of Diner");
+    const [time,setTime] = useState("Select Time");
+    const [date,setDate] = useState("Select Date");
+    const [seating,setSeating] = useState("Select seating");
 
     function updateTimes(state,date){
         return {availableTimes:fetchAPI(new Date(date))} 
@@ -52,8 +58,9 @@ function Main(){
         <main>         
             <Routes>
                 <Route index element={<Homepage />} />
-                <Route path="/booking" element={<Booking availableTimes={state} dispatch={dispatch} submitForm={submitForm}/>} />
-                <Route path="/confirmed" element={<ConfirmedBooking selected={selected} setSelected={setSelected} availableTimes={state}/> } />
+                <Route path="/confirmed" element={<Booking availableTimes={state} dispatch={dispatch} submitForm={submitForm}/>} />
+                <Route path="/booking" element={<ConfirmedBooking availableTimes={state} date={date} setDate={setDate} time={time} setTime={setTime} seating={seating} setSeating={setSeating} occassion={occassion} setOccassion={setOccassion} diner={diner} setDiner={setDiner}/> } />
+                <Route path="/confirmed1" element={<Reservation2 date={date} time={time} occassion={occassion} diner={diner} seating={seating}/> } />
             </Routes>
         </main>
     );
