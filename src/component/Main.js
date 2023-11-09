@@ -1,7 +1,6 @@
 import { useReducer, useState } from 'react';
-import Booking from './Booking';
 import Homepage from './Homepage';
-import ConfirmedBooking from "./ConfirmedBooking";
+import Reservation from "./Reservation.js";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Reservation2 from "./Reservation2.js";
 
@@ -47,7 +46,7 @@ function Main(){
     const navigate = useNavigate();
     function submitForm(formData){
         if(submitAPI(formData)){
-            navigate("/confirmed");
+            navigate("/confirmed1");
         }
     }
     
@@ -58,9 +57,9 @@ function Main(){
         <main>         
             <Routes>
                 <Route index element={<Homepage />} />
-                <Route path="/confirmed" element={<Booking availableTimes={state} dispatch={dispatch} submitForm={submitForm}/>} />
-                <Route path="/booking" element={<ConfirmedBooking availableTimes={state} date={date} setDate={setDate} time={time} setTime={setTime} seating={seating} setSeating={setSeating} occassion={occassion} setOccassion={setOccassion} diner={diner} setDiner={setDiner}/> } />
-                <Route path="/confirmed1" element={<Reservation2 date={date} time={time} occassion={occassion} diner={diner} seating={seating}/> } />
+                {/* <Route path="/confirmed" element={<Booking availableTimes={state} dispatch={dispatch} submitForm={submitForm}/>} /> */}
+                <Route path="/booking" element={<Reservation availableTimes={state} dispatch={dispatch} submitForm={submitForm} date={date} setDate={setDate} time={time} setTime={setTime} seating={seating} setSeating={setSeating} occassion={occassion} setOccassion={setOccassion} diner={diner} setDiner={setDiner}/> } />
+                <Route path="/confirmed1" element={<Reservation2 date={date} setDate={setDate} time={time} setTime={setTime} seating={seating} setSeating={setSeating} occassion={occassion} setOccassion={setOccassion} diner={diner} setDiner={setDiner}/> } />
             </Routes>
         </main>
     );

@@ -9,7 +9,9 @@ function Nav(){
         setMenuOpen(!menuOpen);
     }
     return (
-        <nav className="container">
+        <>
+        <div className="dummy navbar" style={{height:'60px'}}></div>
+        <nav className="navbar container">
             <Link to="/">
             <img src="assets/logo.jpg" alt="little lemon" height="50px"/>
             </Link>
@@ -20,7 +22,7 @@ function Nav(){
                 <div className="bar"></div>
             </div>
 
-            <ul type="none" className={`container nav-links ${menuOpen ? "visible":""}`}>
+            <ul type="none" className={`container nav-links ${menuOpen ? "visible":"invisible"}`}>
                 <li><Link to="/">Home</Link></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#">Menu</a></li>
@@ -29,6 +31,8 @@ function Nav(){
                 <li><a href="#">Login</a></li>
             </ul>
         </nav>
+        
+        </>
     );
 }
 

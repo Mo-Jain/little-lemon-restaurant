@@ -43,9 +43,9 @@ export default function BookingPage(props){
                         <div style={styles}>
                         <h3>Find a Table for any occasion</h3>
                             <label for="res-date" style={{marginTop:"30px"}}>Choose date*</label>
-                            <input type="date" class ="input-field"id="res-date" value={date} onChange={handleChange}/>
+                            <input type="date" className="input-field"id="res-date" value={date} onChange={handleChange}/>
                             <label for="res-time">Choose time*</label>
-                            <select id="res-time " class ="input-field" value={time} onChange={(e) =>{
+                            <select id="res-time " className="input-field" value={time} onChange={(e) =>{
                                                                         setTime(e.target.value);
                                                                     }}>
                                 <option value="Select a time" selected hidden disabled>Select a time</option>
@@ -55,11 +55,11 @@ export default function BookingPage(props){
                             </select>
                             
                             <label for="guests">Number of guests*</label>
-                            <input type="number" class ="input-field" placeholder="Enter Number" min="1" max="10" id="guests" value={guest} onChange={(e) =>{
+                            <input type="number" className="input-field" placeholder="Enter Number" min="1" max="10" id="guests" value={guest} onChange={(e) =>{
                                                                         setGuest(e.target.value);
                                                                     }}/>
                             <label for="occasion">Occasion*</label>
-                            <select id="occasion" class ="input-field" value={occassion} onChange={(e) =>{
+                            <select id="occasion" className="input-field" value={occassion} onChange={(e) =>{
                                                                         setOccassion(e.target.value);
                                                                     }}>
                                 <option value="Occassion" selected hidden disabled>Occassion</option>

@@ -5,7 +5,7 @@ import React from "react";
 import dateFormat from "dateformat";
 
 
-const Date = ({selected,setSelected,icon,placeholder,heading})=>{
+const Date = ({selected,setSelected,icon,placeholder,heading,dispatch})=>{
     var today = new window.Date();
     const [isActive,setIsActive] = useState(false);
     const [value,onChange] = useState(today);
@@ -30,21 +30,24 @@ const Date = ({selected,setSelected,icon,placeholder,heading})=>{
     "December",
     ];
     
-    useEffect(()=>{
-        document.addEventListener("keydown",hideOnEscape,true);
-        document.addEventListener("click",hideOnClickOutside,true);
-        // onChange(today);
-    })
+    
 
     useEffect(()=>{
-        if(def){
+        if(isActive && def){
             setSelected(days[value.getDay()]+','+months[value.getMonth()]+' '+dateFormat(value,'d'));
         }
-    },[value])
+    })
+   
+    
+    useEffect(()=>{
+        document.addEventListener("keydown",hideOnEscape,true);
+        document.addEventListener("click",hideOnClickOutside,true)
+    })
 
     const hideOnEscape = (e) =>{
         if(e.key==="Escape"){
             setIsActive(false);
+            setDef(true);
         }
         
     }
@@ -52,27 +55,25 @@ const Date = ({selected,setSelected,icon,placeholder,heading})=>{
         if(refOne.current && !refOne.current.contains(e.target)){
             setIsActive(false);
         }
-        
+        setDef(true);
     }
     return (
         <div className="dropdown-select">
             <p className="heading">{heading}</p>
-            <div className="dropdown">
+            <div className="dropdown" ref={refOne}>
                 <div className={`dropdown-btn ${selected!==placeholder?"selected":""}`} onClick={() =>{
                     setIsActive(!isActive);
-                    setDef(true);
                 }}>
                     <FontAwesomeIcon className="icon" icon={icon} style={{color: "#495E57",}} />
-                    <div>{selected}</div>
+                    <div className={`placeholder ${selected!==placeholder?"date-selected":""}`}>{selected}</div>
                     <div className={`arrow ${isActive?"up":"down"} ${selected!==placeholder?"select":""}`}/>
                 </div>
-                {isActive &&
-                <div className={`dropdown-content `} ref={refOne}>
-                    <DatePicker  value={value} onChange={onChange}/>
-                </div>
                 
-                }
+                <div className={`dropdown-content ${isActive?"active":"inactive"}`} >
+                    <DatePicker  value={value} onChange={onChange} dispatch={dispatch}/>
+                </div>
             </div>
+            
         </div>  
     )
 }
