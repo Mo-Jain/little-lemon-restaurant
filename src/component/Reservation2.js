@@ -7,6 +7,8 @@ import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import checkedIcon from './img/checked.png'
+import uncheckedIcon from './img/unchecked.png'
 
 const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTime,date,setDate,seating,setSeating}){
     const isOccassion = occassion==="Occassion";
@@ -20,6 +22,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
     const [phone,setPhone] = useState("");
     const [error,setError] = useState(false);
     const [submit,setSubmit] =useState(false);
+    const [checked,setChecked] = useState(false);
 
     const clearForm = () =>{
         setDate("Select Date");
@@ -34,6 +37,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
     }
 
     const navigate = useNavigate();
+    const handleClick = () => setChecked(!checked);
 
     const isValid = () => {
         return (
@@ -67,6 +71,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
         <form onSubmit={handleSubmit}>
             <header className='reservation' >
                 <div className="res" id='content'>
+                    
                     <div className='content' id='left'>
                         <div className='input'>
                             <p>*First Name</p>
@@ -121,7 +126,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                                     <FontAwesomeIcon className={`icon ${isDate?"red":""}`} icon={faCalendar}  />
                                     <div className='state_label'>
                                         {isDate && <FontAwesomeIcon icon={faTriangleExclamation} className='invalid' />}
-                                        <span>{date}</span>
+                                        <span>{isDate?date:date.split(",")[1]}</span>
                                     </div>
                                 </div></Link>
                                 <Link to="/booking"><div className={`state ${isDiner?"red":""}`}>
@@ -159,8 +164,12 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                     </div>
 
                     <div className="seating_option" >
-                            <input type="radio" id="indoor" value="Indoor seating"  name="seating"/>
-                            <label htmlFor="indoor">You agree to our friendly policy</label>
+                            {checked?
+                            <img src={checkedIcon} onClick={handleClick} id='radioIcon'/>
+                            :
+                            <img src={uncheckedIcon} onClick={handleClick} id='radioIcon'/>
+                            }
+                            <span onClick={handleClick}>You agree to our friendly policy</span>
                     </div>
                 
                 </div>
@@ -175,7 +184,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                 <img src="assets\Mario-adrian1.jpg"/>
             </section>
             </div>
-            <input type='submit' className="reserve_button"  value="Create Reservation" />
+            <input type='submit' className={`reserve_button ${!(submit&&isValid)?"animate":""}`}  value="Create Reservation" />
         </form>
     );
 }

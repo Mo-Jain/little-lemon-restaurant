@@ -3,8 +3,21 @@ import Homepage from './Homepage';
 import Reservation from "./Reservation.js";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Reservation2 from "./Reservation2.js";
+import MenuItem from './MenuItem.js';
 
-function Main(){
+const additional_bruschetta = ["Feta","Parmesan","Dressing"];
+
+const additional_greek_salad = ["Avacado","Seeds","Dressing"];
+
+const additional_lemon_desert = ["Extra cheese","Vanilla","Choclate"];
+
+const brus_desc = "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. Topped with chopped tomatoes, oregano and fresh bazil.";
+
+const greek_desc = "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.";
+
+const lemon_desc = "Our trademark dessert coming right from best chefs kitchen to fulfill cravings with the pinch of lemon in it.";
+
+function Main({brusIngred,setBrusIngred,greekIngred,setGreekIngred,lemonIngred,setLemonIngred,brusQty,setBrusQty,greekQty,setGreekQty,lemonQty,setLemonQty}){
     const seededRandom = function (seed) {
         var m = 2**35 - 31;
         var a = 185852;
@@ -60,6 +73,10 @@ function Main(){
                 {/* <Route path="/confirmed" element={<Booking availableTimes={state} dispatch={dispatch} submitForm={submitForm}/>} /> */}
                 <Route path="/booking" element={<Reservation availableTimes={state} dispatch={dispatch} submitForm={submitForm} date={date} setDate={setDate} time={time} setTime={setTime} seating={seating} setSeating={setSeating} occassion={occassion} setOccassion={setOccassion} diner={diner} setDiner={setDiner}/> } />
                 <Route path="/confirmed1" element={<Reservation2 date={date} setDate={setDate} time={time} setTime={setTime} seating={seating} setSeating={setSeating} occassion={occassion} setOccassion={setOccassion} diner={diner} setDiner={setDiner}/> } />
+                <Route path="/bruschetta" element={<MenuItem ingred={brusIngred} setIngred={setBrusIngred} cartQty={brusQty} setCartQty={setBrusQty} additional={additional_bruschetta} heading={"Bruschetta"} price={"7.99"} desc={brus_desc} image={"assets/Bruchetta.jpg"}/>}/>
+                <Route path="/greek_salad" element={<MenuItem ingred={greekIngred} setIngred={setGreekIngred} cartQty={greekQty} setCartQty={setGreekQty} additional={additional_greek_salad} heading={"Greek Salad"} price={"12.99"} desc={greek_desc} image={"assets/greek_salad.jpg"}/>}/>
+                <Route path="/lemon_desert" element={<MenuItem ingred={lemonIngred} setIngred={setLemonIngred} cartQty={lemonQty} setCartQty={setLemonQty} additional={additional_lemon_desert} heading={"Lemon Desert"} price={"5.99"} desc={lemon_desc} image={"assets/lemon_dessert.jpg"}/>}/>
+                
             </Routes>
         </main>
     );

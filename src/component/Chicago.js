@@ -1,7 +1,7 @@
 export default function Chicago(){
     return (
         <div className="about container" id="about">
-            <div className="content">
+            <div className="about-content">
                 <h1>Little Lemon</h1>
                 <h2>Chicago</h2>
                 <p>

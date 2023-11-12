@@ -1,16 +1,16 @@
 
-import React from "react";
-import BookingPage from "./BookingPage";
-import { useState } from "react";
+// import React from "react";
+// import BookingPage from "./BookingPage";
+// import { useState } from "react";
 
-const Booking = (props) => {
+// const Booking = (props) => {
 
 
 
-    return (
+//     return (
 
-        <BookingPage availableTimes={props.availableTimes} dispatch={props.dispatch} submitForm={props.submitForm}/>
-    )
-}
+//         <BookingPage availableTimes={props.availableTimes} dispatch={props.dispatch} submitForm={props.submitForm}/>
+//     )
+// }
 
-export default Booking;
+// export default Booking;

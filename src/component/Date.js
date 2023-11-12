@@ -69,7 +69,7 @@ const Date = ({selected,setSelected,icon,placeholder,heading,dispatch})=>{
                     <div className={`arrow ${isActive?"up":"down"} ${selected!==placeholder?"select":""}`}/>
                 </div>
                 
-                <div className={`dropdown-content ${isActive?"active":"inactive"}`} >
+                <div className={`dropdown-content ${isActive?"active":"inactive"}`} id="date" >
                     <DatePicker  value={value} onChange={onChange} dispatch={dispatch}/>
                 </div>
             </div>

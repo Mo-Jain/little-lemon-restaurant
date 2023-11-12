@@ -4,7 +4,7 @@ export default function CustomerSay(){
             <h2 className="container">Testimonial</h2>
             <div className="container rating">
                 <div className="rating-box">
-                    <div className="container">
+                    <div className=" container">
                         <img className="icon star" src="assets/star.jpg"/>
                         <img className="icon star" src="assets/star.jpg"/>
                         <img className="icon star" src="assets/star.jpg"/>
@@ -18,7 +18,7 @@ export default function CustomerSay(){
                     </div>
                 </div>
                 <div className="rating-box">
-                    <div className="container">
+                    <div className=" container">
                         <img className="icon star" src="assets/star.jpg"/>
                         <img className="icon star" src="assets/star.jpg"/>
                         <img className="icon star" src="assets/star.jpg"/>
@@ -32,7 +32,7 @@ export default function CustomerSay(){
                     </div>
                 </div>
                 <div className="rating-box">
-                    <div className="container">
+                    <div className=" container">
                         <img className="icon star" src="assets/star.jpg"/>
                         <img className="icon star" src="assets/star.jpg"/>
                         <img className="icon star" src="assets/star.jpg"/>

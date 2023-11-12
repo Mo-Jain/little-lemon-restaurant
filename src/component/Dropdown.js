@@ -36,9 +36,9 @@ const Dropdown = ({selected,setSelected,heading,list,label,icon,placeholder})=>{
                     <div className={`arrow ${isActive?"up":"down"} ${selected!==placeholder?"select":""}`}/>
                 </div>
                 
-                <div className={`dropdown-content ${isActive?"active":"inactive"} ${list.length>=4?"grid":""}`} >
+                <div className={`dropdown-content ${isActive?"active":"inactive"} ${list.length>=4?"grid":""} `} id={(list.length%2!==0 && list.length>3) ?"odd":""} >
                     {list.map(items => {
-                        return(<div className="dropdown-item" onClick={(e)=>{
+                        return(<div className="dropdown-item" key={items} onClick={(e)=>{
                             setSelected(e.target.textContent)
                             setIsActive(!isActive)
                         }}>{items} {label}</div>)

@@ -2,14 +2,19 @@
   font-family: karla;
   margin:0;
 }
+/* * {
+    outline: 1px solid red;
+} */
+
 .reservation{
-    padding:40px 0;
+    padding:40px 10px;
     width: 100%;
     display: flex;
     justify-content: center;
     color:#333333;
     background-color: #F4CE14;
     transition: all 0.2s ease-in-out;
+    
   }
 .reservation .res{
   width: 50%;
@@ -17,14 +22,16 @@
   flex-direction: column;
   align-items: center;
 }
+.reservation-dropdowns{
+  padding: 5px;
+}
 .reservation-content{
-  width: 100%;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin: 12px;
   align-content: center;
-  gap: 20px;
+  gap: 40px;
 }
 
 .reservation h1{
@@ -53,6 +60,9 @@
 }
 .reservation .seating input{
   background-color: #F4CE14;
+}
+.images.mobile-view{
+  display: none;
 }
 
 .images img{
@@ -103,7 +113,24 @@ input[type="submit"] {
   background-color: #495E57;
   color:#EDEFEE;
 }
+.reserve_button.animate{
+  animation: buttonAnimate 0.5s;
+}
+@keyframes buttonAnimate{
+  0%{
+    left:0%;
+  }
+  25%{
+    left:-20px;
+  }
+  75%{
+    left:20px;
+  }
+  100%{
+    left:0%;
+  }
 
+}
 .states{
   width: 340px;
 }
@@ -123,6 +150,7 @@ input[type="submit"] {
   font-size: 20px;
 }
 .state{
+  width: max-content;
   display: flex;
   cursor: pointer;
   color:#495E57;
@@ -134,7 +162,6 @@ input[type="submit"] {
 .state span{
   margin: 0 30px;
   font-size: 16px;
-  width: max-content;
 }
 .content{
   display: flex;
@@ -257,9 +284,13 @@ textarea:focus{
 .seating_option{
   display: flex;
   justify-content: center;
-}
-.seating_option input{
   cursor: pointer;
+  align-items: center;
+  gap:10px;
+}
+#radioIcon{
+  width:15px;
+  height: 15px;
 }
 .reservation .seating_option label{
   padding:15px;
@@ -301,8 +332,14 @@ button{
 .content .border{
   border:4px solid red;
 }
-
+input[type=radio]{
+  background-color: inherit;
+}
 @media screen and (max-width: 770px){
+  header.reservation{
+    padding-bottom: 0;
+    overflow: hidden  ;
+  }
   .reservation #content{
     display: grid;
     row-gap: 0;
@@ -319,18 +356,30 @@ button{
     gap: 8px;
     row-gap: 15px;
    }
+   .states span{
+    font-size: 12px;
+   }
+   .states .invalid{
+    width:20px;
+   }
+   .states .icon{
+    font-size: 18px;
+   }
+   .states p.seating_state{
+    font-size: 16px;
+   }
+
    .content{
     gap:0;
    }
    .content .input{
     width: 270px;
+    margin: 5px 0;
    }
    textarea{
     width: 270px;
    }
-   .seating_option{
-    display: ;
-   }
+   
   .images img{
     width: 113px;
     height: 120px;
@@ -340,6 +389,54 @@ button{
   .images{
     width: 100%;
     gap: 10px;
-    margin: 20px;
+    margin: 20px 0;
+  }
+  form{
+    background-color: #F4CE14;
+    padding: 10px 0;
+  }
+  .image_center{
+      display: none;
+      margin: 0;
+  }
+  form input.reserve_button{
+    width: 90%;
+    margin-top:0;
+    max-width: 400px;
+  }
+  .reservation-content{
+    gap:15px;
+  }
+  .reservation-dropdown{
+    display: flex;
+    flex-direction: column-reverse  ;
+  }
+  .seating{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    max-width: 500px;
+  }
+  .seating_option{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    cursor: pointer;
+    
+  }
+  
+  .images.mobile-view{
+    display: block;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    gap:15px;
+  }
+  section.images.mobile-view img{
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
   }
 }

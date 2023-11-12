@@ -10,7 +10,8 @@ export default function CallToAction(){
                 <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
                 <Link to="/booking" ><button className="button">Reserve Table</button></Link>
             {/* </div> */}
-            <img src="assets/header.jpg" alt="restuarant"/>
+            <div className="img" ></div>
+            {/* <img src="assets/poster.jpg" alt="restuarant"/> */}
         </div>
         </div>
     );

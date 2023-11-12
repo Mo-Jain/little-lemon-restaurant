@@ -11,14 +11,14 @@ export default function DatePicker({value,onChange,dispatch}) {
   
  
   return (
-    <div >
+    < >
           <Calendar onChange={(value,event)=>{
             onChange(value);
             dispatch(value);
           }} formatShortWeekday={(locale, date) => dateFormat(date,'ddd')} prev2Label={null} next2Label={null}  value={value} />
             
           
-    </div>
+    </>
   );
 }
 
