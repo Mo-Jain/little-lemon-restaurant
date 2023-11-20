@@ -1,7 +1,7 @@
 function Footer() {
     return (
      <footer className="container">
-      <img src="assets/logo_mono.png" width="184px"/>
+      <img src="assets/logo_mono.png"/>
       <div className="list">
         <h3>Doormat navigation</h3>
         <ul type="none" >

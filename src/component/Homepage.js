@@ -4,11 +4,11 @@ import Header from "./Header";
 import { MenuItem } from "./MenuItem";
 import Specials from "./Specials";
 
-export default function Homepage(){
+export default function Homepage({descriptions,images,dishes,prices}){
     return (
         <>
             <Header />
-            <Specials />
+            <Specials descriptions={descriptions.slice(0,3)} images={images} dishes={dishes} prices={prices}/>
             <CustomerSay/>
             <Chicago/>
             

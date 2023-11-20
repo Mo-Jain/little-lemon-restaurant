@@ -1,29 +1,71 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {Link, animateScroll as scroll} from "react-scroll";
 import {NavLink, useLocation, useNavigate } from "react-router-dom";
-import Basket from "./img/Basket.svg"
+import Basket from "./img/Basket.png"
 import Home from "./img/home icon.svg"
-
-
 import * as Scroll from "react-scroll"
 import { useEffect } from "react";
+import Login from './Login.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
-function Nav({cartItem}){
+
+function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,setGreekQty,setLemonQty}){
 
     const [menuOpen,setMenuOpen] = useState(false);
     const path = useLocation().pathname;
     const location = path.split("/")[1];
     const navigate = useNavigate();
     const scroller = Scroll.scroller;
+    const [isLogin, setIsLogin] = useState(false);
+    
 
     const toggleMenu  = () => setMenuOpen(!menuOpen);
+    const refOne = useRef();
+    useEffect(()=>{
+        document.addEventListener("keydown",hideOnEscape,true);
+        document.addEventListener("click",hideOnClickOutside,true)
+    })
 
+    const hideOnEscape = (e) =>{
+        if(e.key==="Escape"){
+            setMenuOpen(false);
+            
+        }
+        
+    }
+    const hideOnClickOutside  =(e) =>{
+        if(refOne.current && !refOne.current.contains(e.target)){
+            setMenuOpen (false);
+        }
+        
+    }
     useEffect(()=>{
         if(location!==""){
             scroll.scrollToTop({duration:0});
             setMenuOpen(false)
         }
     },[location])
+
+    useEffect(()=>{
+        if(loggedIn){
+            setIsLogin(true);
+            setTimeout(()=>{
+                setIsLogin(false);
+            },1500);
+        }
+    },[loggedIn])
+
+    const handleLogin  = () =>{
+        setLoginOpen(!loginOpen);
+    }
+
+    const handleLogout = () =>{
+        setLoggedIn(false);
+        setBrusQty(0);
+        setGreekQty(0);
+        setLemonQty(0);
+    }
 
     const goToPageAndScroll = async (selector) => {
         await navigate("/");
@@ -86,8 +128,12 @@ function Nav({cartItem}){
                             >About</Link></li>
                     
                     <li><NavLink to="/booking" >Reservation</NavLink></li>
-                    <li><a href="#">Order online</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a>Order online</a></li>
+                    <li>{!loggedIn?
+                        <a onClick={handleLogin}>Login</a>
+                        :
+                        <span onClick={handleLogout}>Logout</span>
+                        }</li>
                 </>
                 )
                 :
@@ -98,12 +144,16 @@ function Nav({cartItem}){
                     <li><a onClick={() => goToPageAndScroll("about")}>About</a></li>                    
                     <li><NavLink to="/booking" >Reservation</NavLink></li>
                     <li><a href="#">Order online</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li>{!loggedIn?
+                        <a onClick={handleLogin}>Login</a>
+                        :
+                        <span onClick={handleLogout}>Logout</span>
+                        }</li>
                 </>
                 )
                 }
             </ul>
-            <ul type="none" className={`sidebar ${menuOpen ? "visible":"invisible"}`}>
+            <ul type="none" className={`sidebar ${menuOpen ? "visible":"invisible"}`} ref={refOne}>
                 <Link 
                     activeClass="active" 
                     to="hero" 
@@ -131,23 +181,35 @@ function Nav({cartItem}){
                 
                 <NavLink to="/booking" ><li>Reservation</li></NavLink>
                 <li><a href="#">Order online</a></li>
-                <li><a href="#">Login</a></li>
+                <li>{!loggedIn?
+                    <a onClick={handleLogin}>Login</a>
+                    :
+                    <span onClick={handleLogout}>Logout</span>
+                    }</li>
             </ul>
-            <div className="cart">
+            <NavLink to="/cart" ><div className="cart">
                 <img src={Basket} className="cart-icon" />
-                <div className="cart-number">{cartItem}</div>
+                {!loggedIn?
+                <div className="cart-dot"></div>
+                :
+                cartItem<1?<div className="cart-dot"></div>:<div className="cart-quantity">{cartItem}</div>
+                }
+            </div></NavLink>
             </div>
-            </div>
+            
         </nav>
-        
+        <span className={`loginPopup ${isLogin?"visible":""}`}>
+                    <FontAwesomeIcon icon={faCheck} className="check" />
+                    loggedIn
+        </span>
+        <div className="loggingIn">
+            <Login open={loginOpen} setOpen={setLoginOpen} setLoggedIn={setLoggedIn}/>
+        </div>
         </>
     );
 }
 
 export default Nav;
-
-
-
 
 
 

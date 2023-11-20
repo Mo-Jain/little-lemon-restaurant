@@ -23,6 +23,8 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
     const [error,setError] = useState(false);
     const [submit,setSubmit] =useState(false);
     const [checked,setChecked] = useState(false);
+    const [errorMesaage,setErrorMessage] = useState("");
+    const [displayMsg,setDisplayMsg] = useState(false);
 
     const clearForm = () =>{
         setDate("Select Date");
@@ -63,12 +65,69 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                 navigate("/");
                 clearForm();
             },1500)
+        }else{
+            // if(isDate){
+            //     if(!errorMesaage){
+            //         setErrorMessage("date");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", date");
+            //     }
+            // }
+            // if(isDiner){
+            //     if(!errorMesaage){
+            //         setErrorMessage("number of dinner");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", number of dinner");
+            //     }
+            // }
+            // if(isOccassion){
+            //     if(!errorMesaage){
+            //         setErrorMessage("occassion");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", occassion");
+            //     }
+            // }
+            // if(isSeating){
+            //     if(!errorMesaage){
+            //         setErrorMessage("seating");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", seating");
+            //     }
+            // }   
+            // if(isTime){
+            //     if(!errorMesaage){
+            //         setErrorMessage("time");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", time");
+            //     }
+            // }
+            // if(!(firstName && email && phone.length >= 8 && lastName)){
+            //     if(errorMesaage){
+            //         setErrorMessage("required fields");
+            //     }else{
+            //         setErrorMessage(errorMesaage+"& required fields");
+            //     }
+            // }
+            setErrorMessage("Please Enter required fields");
+            if(!checked){
+                if(errorMesaage){
+                    setErrorMessage("Please agree to our policy");
+                }else{
+                    setErrorMessage("Please Enter required fields & agree to our policy");
+                }
+            }
+            
+            setDisplayMsg(true);
+            setTimeout(()=>{
+                setDisplayMsg(false);
+                setErrorMessage("");
+            },1500)
         }
         
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="reservation_form" onSubmit={handleSubmit}>
             <header className='reservation' >
                 <div className="res" id='content'>
                     
@@ -103,8 +162,8 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                         </div>
                         <div className='input'>
                             <p>*Phone Number</p>
-                            <div className={`invalid ${error && !phone?"border":""} phone`}>
-                                <select name="Country" class="phone_country">
+                            <div id="phone" className={`invalid ${error && !phone?"phone-border":"no-border"} phone`}>
+                                <select name="Country" className="phone_country">
                                     <option value="India">IND</option>
                                     <option value="USA">US</option>
                                     <option value="England">ENG</option>
@@ -115,7 +174,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                             </div>
                             {error && !phone &&<div>
                                     <FontAwesomeIcon icon={faTriangleExclamation} className='invalid' />
-                                    <span className={`invalid ${phone?"red":""}`}>Correct phone number required</span>
+                                    <span className={`invalid ${phone?"red":""}`}>Valid phone number required</span>
                                 </div>}
                         </div>
                     </div>
@@ -159,7 +218,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                         </div>
                     </div>
                     <div className='comment'>
-                            <p>Special Request</p>
+                            <p>Special Request(Optional)</p>
                             <textarea placeholder='Comment'/>
                     </div>
 
@@ -176,6 +235,9 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
             </header>
             {submit && <div className="popup">
                 <p><strong>Your Reservation has been confirmed check your email</strong></p>
+            </div>}
+            {displayMsg && <div className="error-popup">
+                <p><strong> {errorMesaage}</strong></p>
             </div>}
             <div className="image_center">
             <section className="images">

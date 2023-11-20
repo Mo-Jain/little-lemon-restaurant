@@ -32,10 +32,10 @@ const Reservation = ({availableTimes,occassion,setOccassion,diner,setDiner,time,
     };
     
     return(
-        <form  onSubmit={handleSubmit}>
+        <form className="reservation_form" onSubmit={handleSubmit}>
             <header className='reservation'>
                 <div className="res">
-                    <div className="heading">
+                    <div className="res-heading">
                         <h1>Reservation</h1>
                     </div>
                     <section className="images mobile-view">

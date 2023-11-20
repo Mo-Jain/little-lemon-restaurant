@@ -1,4 +1,4 @@
-*{
+.reservation *{
   font-family: karla;
   margin:0;
 }
@@ -11,10 +11,10 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    color:#333333;
-    background-color: #F4CE14;
+    color:#EDEFEE;
+    background-color: #495E57;
     transition: all 0.2s ease-in-out;
-    
+   
   }
 .reservation .res{
   width: 50%;
@@ -36,10 +36,14 @@
 
 .reservation h1{
   font-size: 64px;
-  color:#495E57;
+  color:#F4CE14;
   font-family: Markazi Text, serif;
   margin-bottom: 25px;
-  text-align: left;
+}
+.reservation .res-heading{
+  align-self: flex-start;
+  justify-self: flex-start; 
+  padding: 0 40px;
 }
 .reservation .seating{
   display: flex;
@@ -52,7 +56,7 @@
 }
 .reservation .seating label{
   padding:15px;
-  color:#333333;
+  color:#EDEFEE;
   font-family: karla;
   font-weight: 600;
   cursor: pointer;
@@ -95,13 +99,13 @@ input[type="submit"] {
   border: none;
   cursor: pointer;
   max-height:45px;
-  background-color: #495E57;
-  color:#EDEFEE;
+  background-color: #F4CE14;
+  color: #495E57;
   text-align: center;
 }
 .reserve_button:hover{
-  background-color: #F4CE14;
-  color: #495E57;
+  background-color: #495E57;
+  color:#EDEFEE;
   transition: all 0.1s ease-in;
   box-shadow: 1px 2px 2px 1px rgb(192, 183, 183);
 }
@@ -146,14 +150,14 @@ input[type="submit"] {
 .states .seating_state{
   text-align: center;
   font-weight: 700;
-  color: #333333;
+  color: #F4CE14;
   font-size: 20px;
 }
 .state{
   width: max-content;
   display: flex;
   cursor: pointer;
-  color:#495E57;
+  color:#EDEFEE;
 }
 
 .states .state.red{
@@ -194,8 +198,7 @@ input[type="submit"] {
   font-size: 16px;
   color: black;
   border-radius: 8px;
-  border:1px solid black;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 .phone .phone_country{
   height:40px;
@@ -203,9 +206,9 @@ input[type="submit"] {
   color: #495E57;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease-in;
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
+  padding: 0;
 }
 .phone select:focus{
   outline: none;
@@ -227,7 +230,22 @@ input[type="submit"] {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-
+.content #phone.no-border .phone_country {
+  border:1px solid black;
+  border-right: none;
+}
+.content #phone.no-border input {
+  border:1px solid black;
+  border-left: none;
+}
+.content #phone.phone-border .phone_country {
+  border:4px solid red;
+  border-right: none;
+}
+.content #phone.phone-border input {
+  border:4px solid red;
+  border-left: none;
+}
 textarea{
   padding: 10px 15px;
   width: 330px;
@@ -279,6 +297,7 @@ textarea:focus{
 .invalid{
   color: red;
   width: 42px;
+  /* height: max-content; */
 }
 
 .seating_option{
@@ -294,7 +313,7 @@ textarea:focus{
 }
 .reservation .seating_option label{
   padding:15px;
-  color:#333333;
+  color:#EDEFEE;
   font-family: karla;
   font-weight: 600;
   cursor: pointer;
@@ -307,7 +326,16 @@ textarea:focus{
 #seating{
   margin: 15px 0px;
 }
-
+.error-popup{
+  padding: 10px 20px;
+  background-color: #EDEFEE;
+  border-radius: 12px;
+  margin: auto;
+  color: #495E57;
+  position: fixed;
+  top:100px;
+  left:40%;
+}
 .popup{
   width: 40%;
   height: max-content;
@@ -332,9 +360,11 @@ button{
 .content .border{
   border:4px solid red;
 }
+
 input[type=radio]{
   background-color: inherit;
 }
+
 @media screen and (max-width: 770px){
   header.reservation{
     padding-bottom: 0;
@@ -391,9 +421,10 @@ input[type=radio]{
     gap: 10px;
     margin: 20px 0;
   }
-  form{
-    background-color: #F4CE14;
+  form.reservation_form{
+    background-color: #495E57;
     padding: 10px 0;
+    border-bottom: 1px solid #EDEFEE;
   }
   .image_center{
       display: none;
@@ -401,7 +432,7 @@ input[type=radio]{
   }
   form input.reserve_button{
     width: 90%;
-    margin-top:0;
+    margin-top:15px;
     max-width: 400px;
   }
   .reservation-content{

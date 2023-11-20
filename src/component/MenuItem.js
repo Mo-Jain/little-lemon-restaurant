@@ -2,13 +2,13 @@ import { useState } from "react";
 import "./MenuItem.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTruckFast } from '@fortawesome/free-solid-svg-icons';
+import {NavLink } from "react-router-dom";
 
 export default function MenuItem({price,additional,desc,heading,image,cartQty,setCartQty,ingred,setIngred}){
     
 
     const [added,setAdded] = useState(false);
-
-
 
     const addQty = () =>{
         
@@ -69,8 +69,11 @@ export default function MenuItem({price,additional,desc,heading,image,cartQty,se
                 </div>
                 <div className="main">
                     <div className="menu-item-delivery">
+                        <div className='delivery'>
+                        <FontAwesomeIcon icon={faTruckFast} flip="horizontal" style={{color: "#2a313c",}} />
                         <p>Delivery Time: <span>20 minutes</span></p>
-                        <span className="button">Change</span>
+                        </div>
+                        <span className="button change-button">Change</span>
                     </div>
                     <div className="menu-item-buttons">
                         {cartQty===0?
@@ -82,14 +85,14 @@ export default function MenuItem({price,additional,desc,heading,image,cartQty,se
                             <span onClick={addQty}>+</span>
                         </span>
                         }
-                        <span className="button" id ="button2">Place Order</span>
+                        <NavLink className="button" id ="button2" to="/cart" ><span >Place Order</span></NavLink>
                     </div>
                 </div>
                 
                 <span className={`cartPopup ${added?"visible":""}`}>
                     <FontAwesomeIcon icon={faCheck} className="check" />
                     Added to cart
-                    </span>
+                </span>
             </div>
         </div>
     );

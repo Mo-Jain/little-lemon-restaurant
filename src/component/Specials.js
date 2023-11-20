@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import MenuItem from "./MenuItem";
 import Dish from "./img/Dish icon.svg"
 
-export default function Specials(){
+export default function Specials({descriptions,images,dishes,prices}){
     return (
         <>
        
@@ -10,60 +10,29 @@ export default function Specials(){
             <div className="container">
             <div className="heading">
                 <h2>This Weeks Specials</h2>
-                <p className="button">Online Menu</p>
+                <Link to='/menu'><p className="button">Online Menu</p></Link>
             </div>
             <div className="cards container">
-                <Link to="/greek_salad">
-                    <div className="card">
-                        <img src="assets/greek_salad.jpg" className="dish"/>
-                        <div className="card-content">
-                            <div className="container">
-                                <h3>Greek Salad</h3>
-                                <h4>$12.99</h4>
+                {descriptions.map((description,index)=>{
+                    return(
+                        <Link to={`/${dishes[index].trim().replaceAll(' ', '_').toLowerCase()}`}>
+                            <div className="card">
+                                <img src={images[index]} className="dish"/>
+                                <div className="card-content">
+                                    <div className="container">
+                                        <h3>{dishes[index]}</h3>
+                                        <h4>${prices[index]}</h4>
+                                    </div>
+                                    <p>{description}</p>
+                                    <div className="container" id="order">
+                                        <span>Order a delivery</span>
+                                        <img className="icon" src={Dish} />
+                                    </div>
+                                </div>
                             </div>
-                            <p>The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. 
-                            </p>
-                            <div className="container" id="order">
-                                <span>Order a delivery</span>
-                                <img className="icon" src={Dish} />
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-                <Link to="/bruschetta">
-                <div className="card">
-                    <img src="assets/Bruchetta.jpg" className="dish"/>
-                    <div className="card-content">
-                        <div className="container">
-                            <h3>Bruschetta</h3>
-                            <h4>$7.99</h4>
-                        </div>
-                        <p>Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. Topped with chopped tomatoes, oregano and fresh bazil.
-                            
-                        </p>
-                        <div className="container" id="order">
-                        <span>Order a delivery</span>
-                            <img className="icon" src={Dish} />
-                        </div>
-                    </div>
-                </div>
-                </Link>
-                <Link to="/lemon_desert">
-                <div className="card">
-                    <img src="assets/lemon_dessert.jpg" className="dish"/>
-                    <div className="card-content">
-                        <div className="container">
-                            <h3>Lemon dessert</h3>
-                            <h4>$5.99</h4>
-                        </div>
-                        <p>Our trademark dessert coming right from best chefs kitchen to fulfill cravings with the pinch of lemon in it.</p>
-                        <div className="container" id="order">
-                        <span>Order a delivery</span>
-                            <img className="icon" src={Dish} />
-                        </div>
-                    </div>
-                </div>
-                </Link>
+                        </Link>
+                    );
+                })}
             </div>
             </div>
         </div>

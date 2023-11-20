@@ -109,9 +109,19 @@
 
 .menu-item-delivery{
     display: flex;
-    gap:20px;
     justify-content: space-between;
     margin-top:15px;
+    padding: 5px 20px;
+}
+.menu-item-delivery .delivery{
+    display: flex;
+    align-items: center;
+}
+.menu-item-delivery .delivery p{
+    padding: 0 15px;
+}
+.menu-item-delivery span.change-button{
+    padding: 5px 20px;
 }
 #clickedButton1{
     cursor: default;

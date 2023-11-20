@@ -41,6 +41,19 @@ nav .nav-links li {
   padding: 1em;
 }
 
+nav li span{
+  color: #495E57;
+  font-weight: 700;
+  padding:3px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+nav li span:hover{
+  
+  background-color: #495E57;
+  color: #EDEFEE;
+    
+}
 nav .nav-links li a{
   color: #495E57;
   font-weight: 700;
@@ -96,9 +109,13 @@ nav .nav-links li a:hover{
   cursor: pointer;
 }
 .sidebar a{
-  
-  
   width: 100%;
+}
+.sidebar li:hover{
+  
+  background-color: #495E57;
+  color: #EDEFEE;
+    
 }
 .invisible{
   left:-200%;
@@ -113,24 +130,48 @@ nav .nav-links li a:hover{
   display: flex;
   align-items: center;
 }
+
+.loginPopup{
+  position: fixed;
+  top:100px;
+  left:40%;
+  width: max-content;
+  padding: 10px;
+  border-radius: 16px;
+  background-color: #EDEFEE;
+  color: #333333;
+  opacity: 0;
+}
+.loginPopup.visible{
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
 .cart{
   display: flex;
   align-items: center;
   cursor: pointer;
+  justify-content: center;
+  width: 60px;
 }
-.cart-number{
+.cart-dot{
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: #495E57;
-  color: #EDEFEE;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  left:-26%;
-  top:14px;
-  font-size: 14px;
+  left:-53%;
+  top:3px;
+}
+.cart-icon{
+  height: 50px;
+}
+.cart-quantity{
+  position: relative;
+  left:-54%;
+  top:3px;
+  font-size: 16px;
+  font-weight: 900;
+  color: #495E57;
 }
 
 footer{
@@ -154,6 +195,10 @@ footer li a{
   color: #EDEFEE;
   margin-left:-37px;
   font-size: 16px;
+}
+
+footer img{
+  width: 120px;
 }
 
 .button{
@@ -440,7 +485,7 @@ span{
 
 .dropdown-select p{
   padding:10px;
-  color:#333333;
+  color:#EDEFEE;
   font-family: karla;
   font-weight: 600;
 }
@@ -560,13 +605,13 @@ span{
   transition: padding-left 0.2s ease;
 }
 @media screen and (max-width:1225px) {
-  main{
+  #main{
     margin-top: 60px;
   }
   
 }
 @media screen and (max-width:980px) {
-  main{
+  #main{
     margin-top: 120px;
   }
   
@@ -631,7 +676,7 @@ span{
   .bar{
     background: #333333;
   }
-  main{
+  #main{
     margin-top: 0;
   }
   
@@ -717,6 +762,16 @@ span{
   .cart-icon{
     height: 40px;
   }
+  .cart-dot{
+    width: 7px;
+    height: 7px;
+    left:-43%;
+    top:3px;
+  }
+  .cart-quantity{
+    font-size: 14px;
+    left:-45%;
+  }
 }
 
 @media screen and (max-width: 400px){
@@ -730,11 +785,13 @@ span{
   .cart-icon{
     height: 35px;
   }
-  .cart-number{
-    width: 18px;
-    height: 18px;
-    left:-26%;
-    top:12px;
-    font-size: 12px;
+  .cart-dot{
+    left:-37%;
+    width: 6px;
+    height: 6px;
+  }
+  .cart-quantity{
+    font-size: 13px;
+    left:-40%;
   }
 }
