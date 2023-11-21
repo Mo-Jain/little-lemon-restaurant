@@ -19,7 +19,7 @@ const grilled_desc = "This comes straight from grandma's recipe book, every last
 
 const pasta_desc = "Our Special pasta made with exclusive recipe will make your snack time hunger with our trademark ingredients along with love."
 
-const description = [greek_desc,brus_desc,lemon_desc,grilled_desc,pasta_desc];
+const description = [greek_desc,brus_desc,grilled_desc,pasta_desc,lemon_desc];
 
 function Main({ingred_pasta,ingred_grilled_fish,grilledIngred,setGrilledIngred,pastaIngred,setPastaIngred,grilledQty,setGrilledQty,pastaQty,setPastaQty,loggedIn,setLoginOpen,ingred_bruschetta,ingred_greek_salad,ingred_lemon_desert,brusIngred,setBrusIngred,greekIngred,setGreekIngred,lemonIngred,setLemonIngred,brusQty,setBrusQty,greekQty,setGreekQty,lemonQty,setLemonQty}){
     const seededRandom = function (seed) {
@@ -55,8 +55,8 @@ function Main({ingred_pasta,ingred_grilled_fish,grilledIngred,setGrilledIngred,p
     const [time,setTime] = useState("Select Time");
     const [date,setDate] = useState("Select Date");
     const [seating,setSeating] = useState("Select seating");
-    const images = ["assets/greek_salad.jpg","assets/Bruchetta.jpg","assets/lemon_dessert.jpg","assets/grilled_fish.jpg","assets/pasta.jpg"]
-    const dishes = ['Greek Salad','Bruschetta','Lemon Desert','Grilled Fish','Pasta'];
+    const images = ["assets/greek_salad.jpg","assets/Bruchetta.jpg","assets/grilled_fish.jpg","assets/pasta.jpg","assets/lemon_dessert.jpg"]
+    const dishes = ['Greek Salad','Bruschetta','Grilled Fish','Pasta','Lemon Desert'];
     const prices = ['12.99','7.99','5.99','20.00','18.99'];
 
     function updateTimes(state,date){

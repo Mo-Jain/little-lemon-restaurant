@@ -11,6 +11,9 @@
     /* margin: 15px 0; */
     cursor: pointer;
 }
+.menu_sub_heading{
+    color: #495e57;
+}
 #card-image{
     min-width: 130px;
     max-width: 130px;

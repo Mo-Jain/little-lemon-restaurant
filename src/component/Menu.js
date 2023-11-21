@@ -20,6 +20,11 @@ const MenuCard = ({description,images,dishes,prices}) => {
             {
                 dishes.map((dish,index) => {
                     return(
+                        <>
+                  
+                        {index===0 && <h2 className='menu_sub_heading'>Starter</h2>}
+                        {index===2 && <h2 className='menu_sub_heading' >Mains</h2>}
+                        {index===4 && <h2 className='menu_sub_heading'>Desert</h2>}
                         <Link to= {`/${dishes[index].trim().replaceAll(' ', '_').toLowerCase()}`}>
                         <div className='menu-card'>
                             <img src={images[index]} id='card-image'/>
@@ -30,6 +35,7 @@ const MenuCard = ({description,images,dishes,prices}) => {
                             </div>
                         </div>
                         </Link>
+                        </>
                     );                    
                 })
             }
