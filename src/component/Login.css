@@ -133,14 +133,16 @@
     font-weight: 700;
     cursor: pointer;
 }
-.login-content .otp-button{
+.login-content input.otp-button{
     margin: 15% 0;
+    /* padding: 10px initial; */
     border-radius: 8px;
     background-color: #F4CE14;
     color: #495e57;
     border: 1px solid black;
     width: 100%;
 }
+
 .login-close{
     height: 510px;
     padding: 3px 8px;

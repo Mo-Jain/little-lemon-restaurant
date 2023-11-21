@@ -6,7 +6,7 @@ import Reservation2 from "./Reservation2.js";
 import MenuItem from './MenuItem.js';
 import AddToCart from './AddToCart.js';
 import Menu from './Menu';
-
+import CreditCard from './CreditCard.js';
 
 
 const brus_desc = "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. Topped with chopped tomatoes, oregano and fresh bazil.";
@@ -79,7 +79,8 @@ function Main({ingred_pasta,ingred_grilled_fish,grilledIngred,setGrilledIngred,p
                 <Route index element={<Homepage descriptions={description} images={images} dishes={dishes} prices={prices}/>} />
                 {/* <Route path="/confirmed" element={<Booking availableTimes={state} dispatch={dispatch} submitForm={submitForm}/>} /> */}
                 <Route path="/booking" element={<Reservation availableTimes={state} dispatch={dispatch} submitForm={submitForm} date={date} setDate={setDate} time={time} setTime={setTime} seating={seating} setSeating={setSeating} occassion={occassion} setOccassion={setOccassion} diner={diner} setDiner={setDiner}/> } />
-                <Route path="/confirmed1" element={<Reservation2 date={date} setDate={setDate} time={time} setTime={setTime} seating={seating} setSeating={setSeating} occassion={occassion} setOccassion={setOccassion} diner={diner} setDiner={setDiner}/> } />
+                <Route path="/confirmed1" element={<Reservation2 date={date} time={time} seating={seating} occassion={occassion} diner={diner}/> } />
+                <Route path="/card_detail" element={<CreditCard/>}/>
                 <Route path="/greek_salad" element={<MenuItem ingred={greekIngred} setIngred={setGreekIngred} cartQty={greekQty} setCartQty={setGreekQty} additional={ingred_greek_salad} heading={"Greek Salad"} price={"12.99"} desc={description[0]} image={images[0]}/>}/>
                 <Route path="/bruschetta" element={<MenuItem ingred={brusIngred} setIngred={setBrusIngred} cartQty={brusQty} setCartQty={setBrusQty} additional={ingred_bruschetta} heading={"Bruschetta"} price={"7.99"} desc={description[1]} image={images[1]}/>}/>
                 <Route path="/lemon_desert" element={<MenuItem ingred={lemonIngred} setIngred={setLemonIngred} cartQty={lemonQty} setCartQty={setLemonQty} additional={ingred_lemon_desert} heading={"Lemon Desert"} price={"5.99"} desc={description[2]} image={images[2]}/>}/>

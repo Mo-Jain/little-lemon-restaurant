@@ -6,11 +6,11 @@ import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import checkedIcon from './img/checked.png'
 import uncheckedIcon from './img/unchecked.png'
 
-const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTime,date,setDate,seating,setSeating}){
+const Reservation2  = function({occassion,diner,time,date,seating}){
     const isOccassion = occassion==="Occassion";
     const isDate = date==="Select Date";
     const isTime = time==="Select Time";
@@ -21,22 +21,22 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
     const [email,setEmail] = useState("");
     const [phone,setPhone] = useState("");
     const [error,setError] = useState(false);
-    const [submit,setSubmit] =useState(false);
+    
     const [checked,setChecked] = useState(false);
     const [errorMesaage,setErrorMessage] = useState("");
     const [displayMsg,setDisplayMsg] = useState(false);
 
-    const clearForm = () =>{
-        setDate("Select Date");
-        setDiner("No of Diner");
-        setOccassion("Occassion");
-        setTime("Select Time");
-        setSeating("Select seating");
-        setFirstName("");
-        setEmail("");
-        setLastName("");
-        setPhone("");
-    }
+    // const clearForm = () =>{
+    //     setDate("Select Date");
+    //     setDiner("No of Diner");
+    //     setOccassion("Occassion");
+    //     setTime("Select Time");
+    //     setSeating("Select seating");
+    //     setFirstName("");
+    //     setEmail("");
+    //     setLastName("");
+    //     setPhone("");
+    // }
 
     const navigate = useNavigate();
     const handleClick = () => setChecked(!checked);
@@ -51,63 +51,17 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
             !isDiner &&
             !isOccassion &&
             !isSeating &&
-            !isTime
+            !isTime &&
+            checked 
         )
     }
     const handleSubmit = (e) =>{
         e.preventDefault();
         setError(true);
-        console.log(isValid());
         if(isValid()){
-            setSubmit(true);
-            setTimeout(()=>{
-                setSubmit(false);
-                navigate("/");
-                clearForm();
-            },1500)
+            navigate("/card_detail");
         }else{
-            // if(isDate){
-            //     if(!errorMesaage){
-            //         setErrorMessage("date");
-            //     }else{
-            //         setErrorMessage(errorMesaage+", date");
-            //     }
-            // }
-            // if(isDiner){
-            //     if(!errorMesaage){
-            //         setErrorMessage("number of dinner");
-            //     }else{
-            //         setErrorMessage(errorMesaage+", number of dinner");
-            //     }
-            // }
-            // if(isOccassion){
-            //     if(!errorMesaage){
-            //         setErrorMessage("occassion");
-            //     }else{
-            //         setErrorMessage(errorMesaage+", occassion");
-            //     }
-            // }
-            // if(isSeating){
-            //     if(!errorMesaage){
-            //         setErrorMessage("seating");
-            //     }else{
-            //         setErrorMessage(errorMesaage+", seating");
-            //     }
-            // }   
-            // if(isTime){
-            //     if(!errorMesaage){
-            //         setErrorMessage("time");
-            //     }else{
-            //         setErrorMessage(errorMesaage+", time");
-            //     }
-            // }
-            // if(!(firstName && email && phone.length >= 8 && lastName)){
-            //     if(errorMesaage){
-            //         setErrorMessage("required fields");
-            //     }else{
-            //         setErrorMessage(errorMesaage+"& required fields");
-            //     }
-            // }
+            
             setErrorMessage("Please Enter required fields");
             if(!checked){
                 if(errorMesaage){
@@ -127,7 +81,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
     }
 
     return (
-        <form className="reservation_form" onSubmit={handleSubmit}>
+        <form className="reservation_form" >
             <header className='reservation' >
                 <div className="res" id='content'>
                     
@@ -172,9 +126,9 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                                 </select>
                                 <input type="text" value={phone}  onChange={(e)=>setPhone(e.target.value)} placeholder='Phone Number'/>
                             </div>
-                            {error && !phone &&<div>
+                            {error && !(phone.length >= 8) &&<div>
                                     <FontAwesomeIcon icon={faTriangleExclamation} className='invalid' />
-                                    <span className={`invalid ${phone?"red":""}`}>Valid phone number required</span>
+                                    <span className={`invalid ${phone?"red":""}`}>10 Digit phone number required</span>
                                 </div>}
                         </div>
                     </div>
@@ -233,9 +187,7 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                 
                 </div>
             </header>
-            {submit && <div className="popup">
-                <p><strong>Your Reservation has been confirmed check your email</strong></p>
-            </div>}
+            
             {displayMsg && <div className="error-popup">
                 <p><strong> {errorMesaage}</strong></p>
             </div>}
@@ -246,9 +198,52 @@ const Reservation2  = function({occassion,setOccassion,diner,setDiner,time,setTi
                 <img src="assets\Mario-adrian1.jpg"/>
             </section>
             </div>
-            <input type='submit' className={`reserve_button ${!(submit&&isValid)?"animate":""}`}  value="Create Reservation" />
+            <button className={`reserve_button `} onClick={handleSubmit} >Create Reservation </button>
         </form>
     );
 }
 
 export default Reservation2;
+
+// if(isDate){
+            //     if(!errorMesaage){
+            //         setErrorMessage("date");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", date");
+            //     }
+            // }
+            // if(isDiner){
+            //     if(!errorMesaage){
+            //         setErrorMessage("number of dinner");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", number of dinner");
+            //     }
+            // }
+            // if(isOccassion){
+            //     if(!errorMesaage){
+            //         setErrorMessage("occassion");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", occassion");
+            //     }
+            // }
+            // if(isSeating){
+            //     if(!errorMesaage){
+            //         setErrorMessage("seating");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", seating");
+            //     }
+            // }   
+            // if(isTime){
+            //     if(!errorMesaage){
+            //         setErrorMessage("time");
+            //     }else{
+            //         setErrorMessage(errorMesaage+", time");
+            //     }
+            // }
+            // if(!(firstName && email && phone.length >= 8 && lastName)){
+            //     if(errorMesaage){
+            //         setErrorMessage("required fields");
+            //     }else{
+            //         setErrorMessage(errorMesaage+"& required fields");
+            //     }
+            // }

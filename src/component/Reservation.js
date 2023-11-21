@@ -53,14 +53,13 @@ const Reservation = ({availableTimes,occassion,setOccassion,diner,setDiner,time,
                                     <label htmlFor="outdoor">Outdoor seating</label>
                                 </div>     
                         </section>
+                        <h3 className="seating-heading">Seating Arrangement</h3>
                         <section className="reservation-dropdowns">
                             <section className="reservation-content">
-                                <Date heading={"Date"} selected={date} setSelected={setDate}  icon={faCalendar} placeholder={"Select Date"} dispatch={dispatch}/>
-                                <Dropdown heading={"Number of Diner"} selected={diner} setSelected={setDiner} list={numbers} label={"Diner"} icon={faUser} placeholder={"No of Diner"}/>
-                            </section>
-                            <section className="reservation-content">
-                                <Dropdown heading={"Occassion"} selected={occassion} setSelected={setOccassion} list={ocassion} label={""} icon={faChampagneGlasses} placeholder={"Occassion"}/>
-                                <Dropdown heading={"Time"} selected={time} setSelected={setTime} list={availableTimes.availableTimes} label={"pm"} icon={faClock} placeholder={"Select Time"}/>
+                                <Date className='date' heading={"Date"} selected={date} setSelected={setDate}  icon={faCalendar} placeholder={"Select Date"} dispatch={dispatch}/>
+                                <Dropdown className='diner' heading={"Number of Diner"} selected={diner} setSelected={setDiner} list={numbers} label={"Diner"} icon={faUser} placeholder={"No of Diner"}/>
+                                <Dropdown className='occassion' heading={"Occassion"} selected={occassion} setSelected={setOccassion} list={ocassion} label={""} icon={faChampagneGlasses} placeholder={"Occassion"}/>
+                                <Dropdown className='time' heading={"Time"} selected={time} setSelected={setTime} list={availableTimes.availableTimes} label={"pm"} icon={faClock} placeholder={"Select Time"}/>
                             </section>
                         </section>
                     </div>

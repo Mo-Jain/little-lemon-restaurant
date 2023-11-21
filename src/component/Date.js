@@ -5,7 +5,7 @@ import React from "react";
 import dateFormat from "dateformat";
 
 
-const Date = ({selected,setSelected,icon,placeholder,heading,dispatch})=>{
+const Date = ({selected,setSelected,icon,placeholder,heading,dispatch,className})=>{
     var today = new window.Date();
     const [isActive,setIsActive] = useState(false);
     const [value,onChange] = useState(today);
@@ -58,8 +58,8 @@ const Date = ({selected,setSelected,icon,placeholder,heading,dispatch})=>{
         setDef(true);
     }
     return (
-        <div className="dropdown-select">
-            <p className="heading">{heading}</p>
+        <div className={`dropdown-select ${className}`}>
+            {/* <p className="heading">{heading}</p> */}
             <div className="dropdown" ref={refOne}>
                 <div className={`dropdown-btn ${selected!==placeholder?"selected":""}`} onClick={() =>{
                     setIsActive(!isActive);

@@ -493,13 +493,14 @@ span{
 .dropdown{
   width: 250px;
   font-size: 16px;
+  
 }
 
 .dropdown-btn{
   padding:15px;
   width: 100%;
   height: 45px;
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: #EDEFEE;
   display: flex;
   align-items: center;
@@ -545,7 +546,7 @@ span{
   margin: 5px 0px;
   z-index: 5000;
   position: absolute;
-  width: inherit;
+  width: 250px;
 }
 .dropdown .grid{
   display: grid;

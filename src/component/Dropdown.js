@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
-const Dropdown = ({selected,setSelected,heading,list,label,icon,placeholder})=>{
+const Dropdown = ({selected,setSelected,heading,list,label,icon,placeholder,className})=>{
     const [isActive,setIsActive] = useState(false);
     const refOne = useRef();
     useEffect(()=>{
@@ -27,8 +27,8 @@ const Dropdown = ({selected,setSelected,heading,list,label,icon,placeholder})=>{
 
     
     return (
-        <div className="dropdown-select">
-            <p className="heading">{heading}</p>
+        <div className={`dropdown-select ${className}`}>
+            {/* <p className="heading">{heading}</p> */}
             <div className="dropdown" ref={refOne}>
                 <div className={`dropdown-btn ${selected!==placeholder?"selected":""}`} onClick={() =>setIsActive(!isActive)}>
                     <FontAwesomeIcon className={`icon ${selected!==placeholder?"invisible":""}`} icon={icon} style={{color: "#495E57",}} />

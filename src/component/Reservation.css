@@ -5,6 +5,9 @@
 /* * {
     outline: 1px solid red;
 } */
+.dropdown-content {
+  margin: 5px 0px;
+}
 
 .reservation{
     padding:40px 10px;
@@ -26,12 +29,13 @@
   padding: 5px;
 }
 .reservation-content{
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   flex-wrap: wrap;
   margin: 12px;
-  align-content: center;
-  gap: 40px;
+  row-gap: 20px;
+  column-gap: 40px;
+  width: 100%;
 }
 
 .reservation h1{
@@ -86,7 +90,7 @@
   width: 50%;
   height: 180px;
 }
-input[type="submit"] {
+.reserve_button {
   margin: 30px auto ;
   line-height:14px;
   display: flex;
@@ -273,6 +277,7 @@ textarea:focus{
   "name name "
   "detail detail"
   "state comment";
+  /* gap:10px; */
 }
 #left.content{
   grid-area: name;
@@ -282,6 +287,9 @@ textarea:focus{
 }
 .states{
   grid-area: state;
+}
+#left .input,#right .input{
+  margin: 5px;
 }
 .comment{
   grid-area: comment;
@@ -312,7 +320,7 @@ textarea:focus{
   height: 15px;
 }
 .reservation .seating_option label{
-  padding:15px;
+  padding:1px;
   color:#EDEFEE;
   font-family: karla;
   font-weight: 600;
@@ -364,8 +372,76 @@ button{
 input[type=radio]{
   background-color: inherit;
 }
+.seating-heading{
+  display: none;
+}
+.res_card .res-heading{
+  padding: 0 10px;
+  margin: 20px 0;
+}
+.res_card h2{
+  color: #F4CE14;
+  font-family: Markazi Text,serif;
+  font-size: 50px;
+}
+.res_card h3{
+  font-family: Markazi Text,serif;
+  font-size: 32px;
+}
+.res_card h4{
+  font-family: karla;
+  font-size: 20px;
+  align-self: flex-start;
+  margin: 25px 10px;
+}
+
+.card_content{
+  width: fit-content;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap:40px;
+}
+#card .input{
+  width: fit-content;
+  height: max-content;
+}
+.card_content .input p{
+  padding: 10px 0;
+}
+.card_content .input .expiry_date{
+  width: 105px;
+}
+.card_content .input .cvv{
+  width: 70px;
+}
+
+.card_content .cvv_logo{
+  width: 60px;
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid black;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.detail_check{
+  align-self: flex-start;
+  margin: 10px 0;
+}
+input.book {
+  min-width: 160px;
+}
 
 @media screen and (max-width: 770px){
+  .seating-heading{
+    display: block;
+    margin-top: 10px;
+  }
   header.reservation{
     padding-bottom: 0;
     overflow: hidden  ;
@@ -402,18 +478,30 @@ input[type=radio]{
    .content{
     gap:0;
    }
+   .card_content{
+    gap:20px;
+   }
+   
+   .card_content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+   }
    .content .input{
-    width: 270px;
+    width: 100%;
     margin: 5px 0;
    }
    textarea{
-    width: 270px;
+    /* width: 100%; */
+    max-width: 400px;
    }
    
   .images img{
-    width: 113px;
-    height: 120px;
+    width: 30%;
+    aspect-ratio: 1 / 1;
     border-radius: 8px;
+    min-width: 160px;
+
   }
   
   .images{
@@ -457,17 +545,96 @@ input[type=radio]{
     cursor: pointer;
     
   }
-  
+  .detail_check{
+    margin: 20px 0;
+   }
+   .book{
+    margin: 10px 0;
+   }
   .images.mobile-view{
     display: block;
     display: flex;
     justify-content: center;
     height: fit-content;
-    gap:15px;
   }
   section.images.mobile-view img{
     border-radius: 0;
     margin: 0;
     padding: 0;
+    
+  }
+}
+
+@media screen and (max-width: 770px){
+  .reservation-content{
+    display: grid;
+    grid-template-areas: 
+      "occassion diner"
+      "date date"
+      "time time";
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0;
+  }
+  .reservation-dropdown{
+    width: 100%;
+  }
+  .reservation-content .date{
+    grid-area: date;
+    justify-self: center;
+  }
+  .reservation-content .diner{
+    grid-area: diner;
+    justify-self: center;
+  }
+  .reservation-content .occassion{
+    grid-area: occassion;
+    justify-self: center;
+  }
+  .reservation-content .time{
+    grid-area: time;
+    justify-self: center;
+  }
+  .reservation-content .diner{
+    width: 100%;
+  }
+  .diner .dropdown{
+    width: 100%;
+  }
+  .reservation-content .occassion{
+    width: 100%;
+  }
+  .occassion .dropdown{
+    width: 100%;
+  }
+  .reservation-content .date{
+    width: 100%;
+  }
+  .date .dropdown{
+    width: 100%;
+  }
+  .reservation-content .time{
+    width: 100%;
+  }
+  .time .dropdown{
+    width: 100%;
+  }
+  .dropdown-content {
+    width: 45%;
+  }
+  .dropdown-content .dropdown-item{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+  }
+  .time .dropdown-content {
+    width: 94%;
+  }
+  .date .dropdown-content {
+    width: 65%;
+    min-width: 310px;
   }
 }

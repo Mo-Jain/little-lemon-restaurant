@@ -35,7 +35,7 @@ const AddToCart  = ({loggedIn,setLoginOpen,ingred_bruschetta,ingred_greek_salad,
                         <h5>Cutlery</h5>
                         <div className='cutleryRadio'>
                             <label htmlFor='cutlerySelect'>Help reduce plastic waste. only only ask for cutelry if you need it </label>
-                            <input type='radio' className='cutlerySelect'/>
+                            <input type='radio' className='cutlerySelect' id='cutlerySelect' value='cutlerySelect'/>
                         </div>
                     </div>
                     <h3>Order Summary</h3>

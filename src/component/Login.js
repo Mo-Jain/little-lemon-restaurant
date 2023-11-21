@@ -115,7 +115,7 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
                                     <p className={`valid ${valid?"invisible":""}`}>Please Enter Valid Number/Email</p>
                                 </div>
                                 <p className="login-policy">By continuing, you agree to Flipkart's <a>Terms of Use</a> and <a>Privacy Policy</a>.</p>
-                                <input type="submit" className="otp-button" value="Request OTP"/>
+                                <input type="submit" className="button otp-button" value="Request OTP" height='50px'/>
                             </form>
                             <a className="login-account">New? Create an account</a>
                         </div>

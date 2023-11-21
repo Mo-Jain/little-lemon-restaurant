@@ -4,10 +4,11 @@
 .menu-card{
     padding: 40px;
     display: flex;
-    background: #FBDABB;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);    
+    /* background: #FBDABB; */
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);     */
+    border-top: 1px solid rgb(154, 154, 154);
     gap:40px;
-    margin: 15px 0;
+    /* margin: 15px 0; */
     cursor: pointer;
 }
 #card-image{
@@ -29,6 +30,7 @@
     }
     .menu-card{
         gap:20px;
+        flex-direction: row-reverse;
     }
     .menu-card{
         padding: 25px 15px;
