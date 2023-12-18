@@ -9,13 +9,9 @@
     justify-content: space-between;
     gap:10px;
     flex-wrap: wrap;
+    min-height: 500px;
 }
-#cart{
-    width: 100%;
-    padding: 30px 50px;
-    background-color: rgb(241, 236, 236);
-    display: block;
-}
+
 
 .empty{
     width: 100%;
@@ -280,7 +276,19 @@
     opacity: 1;
     transition: opacity 0.3s ease;
 }
+.bodyView *{
+    font-family:karla ;
+}
 
+.bodyView>.buttonsView>.button>.inner>button[type="submit"]{
+    color: #495E57; 
+}   
+.button>.inner>button {
+    color: #495E57;  
+}
+.StripeCheckout span{
+    color: #333333;
+}
 @media screen and (max-width:770px) {
     .addToCart  {
         padding: 10px;

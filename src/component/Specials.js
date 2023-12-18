@@ -15,8 +15,8 @@ export default function Specials({descriptions,images,dishes,prices}){
             <div className="cards container">
                 {descriptions.map((description,index)=>{
                     return(
-                        <Link to={`/${dishes[index].trim().replaceAll(' ', '_').toLowerCase()}`}>
-                            <div className="card">
+                        <Link to={`/${dishes[index].trim().replaceAll(' ', '_').toLowerCase()}`} key={index}>
+                            <div className="card" >
                                 <img src={images[index]} className="dish"/>
                                 <div className="card-content">
                                     <div className="container">

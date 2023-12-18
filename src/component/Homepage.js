@@ -4,7 +4,7 @@ import Header from "./Header";
 import { MenuItem } from "./MenuItem";
 import Specials from "./Specials";
 
-export default function Homepage({descriptions,images,dishes,prices}){
+export default function Homepage({descriptions,images,dishes,prices,user}){
     return (
         <>
             <Header />

@@ -4,98 +4,152 @@ import logo from "./img/monochrome_logo.png";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { validateEmail } from "./utils";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css';
+import OTPInput, { ResendOTP } from "otp-input-react";
+import toast, { Toaster } from 'react-hot-toast';
+import {
+    RecaptchaVerifier,
+    signInWithPhoneNumber,
+    signInWithPopup,
+  } from "firebase/auth";
+import { auth, googleProvider } from "./config/firebase.js";
+
+
 const Login = ({open,setOpen,setLoggedIn}) =>{
     const [input,setInput] = useState('');
+    const [input1,setInput1] = useState('');
     const [valid,setValid] = useState(true);
+    const [valid1,setValid1] = useState(true);
     const [placeholder,setPlaceholder] = useState(true);
     const [validInput,setValidInput] = useState(false);
-    const [inputOtp1,setInputOtp1] = useState("");
-    const [inputOtp2,setInputOtp2] = useState("");
-    const [inputOtp3,setInputOtp3] = useState("");
-    const [inputOtp4,setInputOtp4] = useState("");
-    const [inputOtp5,setInputOtp5] = useState("");
-    const [inputOtp6,setInputOtp6] = useState("");
-    const handleChange  = (e)=>{
-        setInput(e.target.value);
-        setValid(true);
-    }   
+    const [otp,setOtp]  = useState("");
+    const [flag,setFlag] = useState(false);
+    const [showOTP,setShowOTP] = useState(false);
+    const [focus,setFocus] = useState(true);
+    const [countryDialCode,setCountryDialCode] = useState('91');
+    const [countryDialCode1,setCountryDialCode1] = useState('91');
+
     const handleSubmit = (e) =>{
         e.preventDefault();
-        if((isNaN(+input) || input.length!==10) && !validateEmail(input)){
+        if((isNaN(+input) || input.length!==12) && !validateEmail(input)){
             setValid(false);
         }else{
+            toast.success('Otp sended successfully!');
             setValidInput(true);
         }
+    }
+    
+    const reset = () =>{
+        setInput(countryDialCode);
+        setInput1(countryDialCode1);
+        setValid(true);
+        setValid1(true);
+        setPlaceholder(true);
+        setValidInput(false);
+        setOtp("");
+        setFlag(false);
+        setShowOTP(false);
+    }
+    function onCaptchaVerify() {
+        if(!window.recaptchaVerifier){
+            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                'size': 'invisible',
+                'callback': (response) => {
+                  onSignup();
+                }
+              });
+        }
+    }
+
+    const onSignup = async() => {
+        if(isNaN(+input1) || input1.length!==12){
+            setValid1(false);
+        }
+        else{
+            setValid1(true);
+
+            try{
+                const recaptcha = new RecaptchaVerifier(auth,"recaptcha",{'size': 'invisible'});
+                const confirmation = await signInWithPhoneNumber(auth,input1,recaptcha);
+                console.log(confirmation);
+                setShowOTP(true);
+                toast.success('Otp sent successfully!');
+            }
+            catch(err){
+                console.error(err);
+            }
+
+            // onCaptchaVerify();
+            // // auth.settings.appVerificationDisabledForTesting = true;
+            // // var phoneNumber = "+16505554567";
+            // // var testVerificationCode = "123456";
+
+            // // var appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+            // //     'size': 'invisible',
+            // // });
+
+            // const appVerifier  = window.recaptchaVerifier;
+            // const formatPh = '+' + input1;
+            // signInWithPhoneNumber(auth, formatPh, appVerifier)
+            // .then((confirmationResult) => {
+            // window.confirmationResult = confirmationResult;
+            // setShowOTP(true);
+            // toast.success('Otp sended successfully!');
+            // })
+            // .catch((error) => {
+            //     console.error(error);
+            // });
+        }
+        
+       
+    }
+
+    function onOTPVerify(){
+        window.confirmationResult
+        .confirm(otp)
+        .then(async (res)=>{
+            console.log(res);
+            reset();
+            setOpen(false);
+            setLoggedIn(true);
+        })
+        .catch((err)=>{
+            console.error(err);
+        });
     }
 
     const handleOtpSubmit = (e) => {
         e.preventDefault();
-        setInputOtp1("");
-        setInputOtp2("");
-        setInputOtp3("");
-        setInputOtp4("");
-        setInputOtp5("");
-        setInputOtp6("");
-        setInput("");
-        setValidInput(false);
         setOpen(false);
+        reset();
+        
         setLoggedIn(true);
     }
+     const signInWithGoogle = async() =>{
+        try{
+            await signInWithPopup(auth,googleProvider);
+            reset();
+            setOpen(false);
+            setLoggedIn(true);
+        }
+        catch(err){
+            console.error(err);
+        }
+     }
 
-    useEffect(()=>{
-        const inputs = document.getElementById("inputs");
-        inputs.addEventListener("input",function(e){
-            const target = e.target; 
-            const val = target.value; 
-        
-            if (isNaN(val)) { 
-                target.value = ""; 
-                return; 
-            } 
-        
-            if (val != "") { 
-                const next = target.nextElementSibling; 
-                if (next) { 
-                    next.focus(); 
-                } 
-            } 
-        });
-
-        inputs.addEventListener("keyup", function (e) { 
-            const target = e.target; 
-            const key = e.key.toLowerCase(); 
-          
-            if (key == "backspace" || key == "delete") { 
-                target.value = ""; 
-                const prev = target.previousElementSibling; 
-                if (prev) { 
-                    prev.focus(); 
-                } 
-                return; 
-            }
-            if(key=="arrowleft"){
-                const prev = target.previousElementSibling; 
-                if (prev) { 
-                    prev.focus(); 
-                } 
-                return;
-            }
-            if(key=="arrowright"){
-                const next = target.nextElementSibling; 
-                if (next) { 
-                    next.focus(); 
-                } 
-                return;
-            }
-        });
-    })
+    
 
     
     return(
         <>
         <div className={`login-overlay`} style={!open?{display:'none'}:{}}>
+            
             <div className="login">
+            
+                
                 <div className={`login-box ${validInput?"validInput":""}`}> 
+                
                     <div className="login-msg">
                         <div className='msg-content'>
                             <h2>Login</h2>
@@ -107,38 +161,85 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
                         </div>
                     </div>
                     <div className='container login-contents'>
-                        <div className="login-content ">
+                        
+                        <div className="login-content " style={{ display: !flag ? "flex" : "none" }}>
                             <form className="login-form" onSubmit={handleSubmit}>
                                 <div className="login-input">
                                     <p className={` ${placeholder?"placeholder":"noholder"}`}>Enter Mobile number/Email </p>
-                                    <input type="text" value={input} className={`input ${valid?"":"notValid"}`} onChange={handleChange} onFocus={()=>setPlaceholder(false)} onBlur={()=>setPlaceholder(true)}/>
+                                    <PhoneInput country={'in'} countryCodeEditable={false} value={input} onChange={(phone,country)=>{
+                                        setCountryDialCode(country.dialCode);
+                                        setInput(phone);
+                                    }}/>
+                                    
                                     <p className={`valid ${valid?"invisible":""}`}>Please Enter Valid Number/Email</p>
                                 </div>
                                 <p className="login-policy">By continuing, you agree to Flipkart's <a>Terms of Use</a> and <a>Privacy Policy</a>.</p>
+                                
                                 <input type="submit" className="button otp-button" value="Request OTP" height='50px'/>
+                                <div className = 'orContainer'>
+                                    <div className='line'/>
+                                    <p>OR</p>
+                                    <div className='line'/>
+                                </div>
+                                <p className="button otp-button" style={{backgroundColor:'#7c7cf6',color:'black' ,border:'1px solid black',borderRadius:'4px'}} onClick={signInWithGoogle} >Sign In with Google</p>
                             </form>
-                            <a className="login-account">New? Create an account</a>
+                            <a className="login-account" onClick={()=>setFlag(true)}>New? Create an account</a>
                         </div>
-                        <div className={`login-content login-content-otp `}>
+                        <div className={`login-content login-content-otp `} style={{ display: !flag ? "flex" : "none" }}>
                             <form onSubmit={handleOtpSubmit}>
-                                <p>Please enter the OTP sent to {input} <span onClick={()=>setValidInput(false)}>Change</span></p>
+                                <p>Please enter the OTP sent to {input.substring(2)} <span onClick={()=>setValidInput(false)}>Change</span></p>
                                 <div id="inputs" className="inputs"> 
-                                    <input className="input" type="text" value={inputOtp1} required onChange={(e)=>setInputOtp1(e.target.value)}
-                                        inputMode="numeric" maxLength="1" /> 
-                                    <input className="input" type="text" value={inputOtp2} required onChange={(e)=>setInputOtp2(e.target.value)}
-                                        inputMode="numeric" maxLength="1" /> 
-                                    <input className="input" type="text" value={inputOtp3} required onChange={(e)=>setInputOtp3(e.target.value)}
-                                        inputMode="numeric" maxLength="1" /> 
-                                    <input className="input" type="text" value={inputOtp4} required onChange={(e)=>setInputOtp4(e.target.value)}
-                                        inputMode="numeric" maxLength="1" /> 
-                                    <input className="input" type="text" value={inputOtp5} required onChange={(e)=>setInputOtp5(e.target.value)}
-                                        inputMode="numeric" maxLength="1" /> 
-                                    <input className="input" type="text" value={inputOtp6} required onChange={(e)=>setInputOtp6(e.target.value)}
-                                        inputMode="numeric" maxLength="1" /> 
+                                    <OTPInput OTPLength={6} otpType="number" value={otp} onChange={setOtp} disabled={false} autoFocus className="input otp-container"></OTPInput>
                                 </div>
                                 <input type="submit" className='button otp-button' value="Verify"/>
+                                
                             </form>
                         </div>
+                        <div className="login-content ">
+                            <div className="login-form" >
+                                <div className="login-input">
+                                    <span className={` ${placeholder?"placeholder":"noholder"}`}>
+                                    Enter Mobile number  
+                                    </span>
+                                    {showOTP &&
+                                    <span id='change' onClick={()=>{
+                                        setShowOTP(false);
+                                        setOtp("");
+                                    }}> Change?</span>}
+                                    
+                                    <PhoneInput country={'in'} countryCodeEditable={false} value={input1} onChange={(phone,country)=>{
+                                        setCountryDialCode1(country.dialCode);
+                                        setInput1(phone);
+                                    }} disabled={showOTP} disableDropdown={showOTP} autoFocus/>
+                                    <p className={`valid ${valid1?"invisible":""}`}>Please Enter Valid Number/Email</p>
+                                    
+                                </div>
+                                <div id='recaptcha'></div>
+                                {!showOTP &&
+                                <p className="login-policy">By continuing, you agree to Flipkart's <a>Terms of Use</a> and <a>Privacy Policy</a>.</p>
+                                }
+                                {showOTP &&
+                                <>
+                                    <div className='otp'>
+                                        <p className='otp-msg'>Otp Sent to Mobile</p>
+                                        <p className='otp-label'>Enter Otp</p>
+                                        <div id="inputs" className="inputs"> 
+                                            <OTPInput OTPLength={6} otpType="number" value={otp} onChange={setOtp} autoFocus className="input otp-container"></OTPInput>
+                                        </div>
+                                    </div>
+                                    <p type="submit" id='sign-in' className="button otp-button" onClick={onOTPVerify}>Sign IN</p>
+                                </>
+                                }
+                                {!showOTP &&
+                                    <p className="button otp-button" id='sign-in' style={{color:'black' ,border:'1px solid black',borderRadius:'4px'}} onClick={onSignup}>Continue</p>
+                                }
+                                <p className="button otp-button" style={{backgroundColor:'white',color:'black' ,border:'1px solid black',borderRadius:'4px'}} onClick={()=>setFlag(false)}>Existing user</p>
+                                <p className="button otp-button" style={{backgroundColor:'#7c7cf6',color:'black' ,border:'1px solid black',borderRadius:'4px'}} onClick={signInWithGoogle} >Sign In with Google</p>
+                                
+                            </div>
+                            
+                        </div>
+
                     </div>
                 </div>
             </div>

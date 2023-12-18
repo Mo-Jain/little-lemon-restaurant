@@ -42,7 +42,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 3;
+    z-index: 30;
 }
 .msg-content{
     display: flex;
@@ -76,7 +76,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width:340px;
+    min-width:340px;
     z-index: 0;
     position: relative;
     left:0;
@@ -86,6 +86,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    width:340px;
+    overflow: hidden;
 }
 .login-form{
     height: 55%;
@@ -95,8 +97,32 @@
     justify-content: space-between;
     
 }
-.login-input .input{
+.login-input .react-tel-input .form-control {
     background-color: inherit;
+    width: 90%;
+    border: 1px solid black;
+}
+.login-input .react-tel-input{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+.login-input .react-tel-input .flag-dropdown{
+    height: 104%;
+    margin-top: -1px;
+}
+.login-input .flag-dropdown .selected-flag{
+    background-color: #b5b1b1;
+    border: 1px solid black;
+    border-right: none;
+    padding: 2px initial;
+    height: 100%;
+}
+.login-input .flag-dropdown .selected-flag:hover{
+    background-color: #b5b1b1d1;
+}
+.login-input .inputClass{
+    background-color: red;
     width: 90%;
     border-bottom: 1px solid black;
     transform: none;
@@ -128,19 +154,36 @@
     color: blue;
     cursor: pointer;
 }
+.otp{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.otp .inputs{
+    margin-top: 0;
+}
+.otp p{
+    margin-top: 30px;
+}
+#change{
+    color: blue;
+    cursor: pointer;
+}
 .login-account{
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
 }
-.login-content input.otp-button{
-    margin: 15% 0;
-    /* padding: 10px initial; */
-    border-radius: 8px;
+.login-content .otp-button{
+    
+    padding: 10px;
+    border-radius: 4px;
     background-color: #F4CE14;
     color: #495e57;
     border: 1px solid black;
     width: 100%;
+    margin-bottom: 15px;
 }
 
 .login-close{
@@ -175,24 +218,49 @@ p.valid{
 }
 .inputs{
     display: flex;
-    width: 90%;
-    justify-content: space-evenly;
+    width: 80%;
+    justify-content: flex-start;
     margin-top:20px;
 }
 .inputs input{
     text-align: center;
     background-color: inherit;
-    width: 13%;
+    width: 11%;
     border-bottom: 1px solid black;
 }
-
 .inputs input:focus{
     outline: none;
     border-bottom: 1px solid orange;
 }
 .login-box.validInput .login-content{
-    left: -50%;
+    left: -100%;
     transition: left 0.3s ease;
+}
+
+
+.button.otp-button{
+    display: inline-flex;
+    align-items: center;
+}
+#sign-in{
+    margin: 50px 0 20px;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+.button.otp-button:hover{
+    background-color: #7c7cf6;
+    background-color: #F4CE14a9;
+    color: black;
+}
+.line{
+    height: 1px;
+    width: 100%;
+    background-color: #b5b1b1;
+}
+.orContainer{
+    display: flex;
+    align-items: center;
+    gap: 2  px;
 }
 
 @media screen and (max-width:770px) {
@@ -234,7 +302,7 @@ p.valid{
         width: 100%; 
         border-radius: 0;  
     }
-    input.otp-button{
+    .login-form p.otp-button{
         max-width: 400px;
         align-self: center;
     }

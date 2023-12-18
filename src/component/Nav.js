@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import Login from './Login.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { signOut } from "firebase/auth";
+import { auth } from "./config/firebase.js";
 
 
 function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,setGreekQty,setLemonQty}){
@@ -18,7 +20,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
     const navigate = useNavigate();
     const scroller = Scroll.scroller;
     const [isLogin, setIsLogin] = useState(false);
-    
+    var user = auth?.currentUser;
 
     const toggleMenu  = () => setMenuOpen(!menuOpen);
     const refOne = useRef();
@@ -29,8 +31,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
 
     const hideOnEscape = (e) =>{
         if(e.key==="Escape"){
-            setMenuOpen(false);
-            
+            setMenuOpen(false); 
         }
         
     }
@@ -60,14 +61,20 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
         setLoginOpen(!loginOpen);
     }
 
-    const handleLogout = () =>{
+    const handleLogout = async() =>{
         setLoggedIn(false);
         setBrusQty(0);
         setGreekQty(0);
         setLemonQty(0);
+        try{
+            await signOut(auth);
+        }
+        catch(err){
+            console.error(err);
+        }
     }
 
-    const goToPageAndScroll = async (selector) => {
+    const goToPageAndScroll = async(selector) => {
         await navigate("/");
         
         await scroller.scrollTo(selector, {
@@ -84,6 +91,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
 
         
         <nav className="navbar container">
+            
             {location!==""?
             <NavLink to="/"><img src={Home} className="menu-icon" /></NavLink>: 
             <div className="menu-icon" onClick={toggleMenu}>
@@ -129,11 +137,13 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                     
                     <li><NavLink to="/booking" >Reservation</NavLink></li>
                     <li><a>Order online</a></li>
-                    <li>{!loggedIn?
+                    <li>{!user?
                         <a onClick={handleLogin}>Login</a>
                         :
                         <span onClick={handleLogout}>Logout</span>
-                        }</li>
+                        }
+                    </li>
+                    {/* <li><img src={photoURL} width={'50px'}/></li> */}
                 </>
                 )
                 :
@@ -144,7 +154,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                     <li><a onClick={() => goToPageAndScroll("about")}>About</a></li>                    
                     <li><NavLink to="/booking" >Reservation</NavLink></li>
                     <li><a href="#">Order online</a></li>
-                    <li>{!loggedIn?
+                    <li>{!user?
                         <a onClick={handleLogin}>Login</a>
                         :
                         <span onClick={handleLogout}>Logout</span>
@@ -181,7 +191,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                 
                 <NavLink to="/booking" ><li>Reservation</li></NavLink>
                 <li><a href="#">Order online</a></li>
-                <li>{!loggedIn?
+                <li>{!user?
                     <a onClick={handleLogin}>Login</a>
                     :
                     <span onClick={handleLogout}>Logout</span>
@@ -189,7 +199,8 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
             </ul>
             <NavLink to="/cart" ><div className="cart">
                 <img src={Basket} className="cart-icon" />
-                {!loggedIn?
+                
+                {!user?
                 <div className="cart-dot"></div>
                 :
                 cartItem<1?<div className="cart-dot"></div>:<div className="cart-quantity">{cartItem}</div>
