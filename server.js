@@ -24,7 +24,7 @@ app.post('/checkout',async(req, res)=>{
         })
         const key = uuidv4();
         const charge = await stripe.paymentIntents.create({
-            amount: Number((cart.price).toFixed(0))*100,
+            amount: Number(cart.price).toFixed(0),
             currency: 'usd',
             customer: customer.id,
             receipt_email: token.email,

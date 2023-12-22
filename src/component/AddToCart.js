@@ -3,7 +3,7 @@ import './AddToCart.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import StripeCheckout from 'react-stripe-checkout';
-import {useHistory, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import {
     getDocs,
     collection,
@@ -18,20 +18,15 @@ import { auth, db,fs } from './config/firebase';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Modal from './Modal';
 
+// toast.configure();
 
+const AddToCart  = ({user,dispatchToast}) =>{
 
-
-
-const AddToCart  = ({user,loggedIn,setLoginOpen,ingred_bruschetta,ingred_greek_salad,ingred_lemon_desert,images,brusQty,setBrusQty,greekQty,setGreekQty,lemonQty,setLemonQty,brusIngred,setBrusIngred,greekIngred,setGreekIngred,lemonIngred,setLemonIngred,ingred_pasta,ingred_grilled_fish,grilledIngred,setGrilledIngred,pastaIngred,setPastaIngred,grilledQty,setGrilledQty,pastaQty,setPastaQty}) =>{
-    const brusIngredQty = Object.values(brusIngred).reduce((a, b) => a + b);
-    const greekIngredQty = Object.values(greekIngred).reduce((a, b) => a + b);
-    const lemonIngredQty = Object.values(lemonIngred).reduce((a, b) => a + b);
-    const grilledIngredQty = Object.values(grilledIngred).reduce((a, b) => a + b);
-    const pastaIngredQty = Object.values(pastaIngred).reduce((a, b) => a + b);
     const [dishList,setDishList] =useState([]);
     
-    const [showModel,setShowModel] = useState(true);
+    const [showModal,setShowModal] = useState(false);
     
     // getting current user uid
     function GetUserUid(){
@@ -49,7 +44,13 @@ const AddToCart  = ({user,loggedIn,setLoginOpen,ingred_bruschetta,ingred_greek_s
     const uid = GetUserUid();
 
    
+    const openModal = ()=>{
+        setShowModal(true);
+    }
 
+    const hideModal=()=>{
+        setShowModal(false);
+    }
 
     const updateAddIngredQty = async(dishDoc,qty,index) => {
         try{
@@ -128,24 +129,24 @@ const AddToCart  = ({user,loggedIn,setLoginOpen,ingred_bruschetta,ingred_greek_s
     },[]);
 
     const handleCheckout = ()=>{
-        if(!loggedIn){
-            setLoginOpen(true);
-        }
+        setShowModal(true);
     }
     // console.log(dishList);
 
-    useEffect(()=>{
-        setSumIngred(brusIngredQty*brusQty+greekIngredQty*greekQty+lemonIngredQty*lemonQty+grilledIngredQty*grilledQty+pastaIngredQty*pastaQty);
-        setSumQty(12.99*greekQty+7.99*brusQty+5.99*lemonQty+20.00*grilledQty+18.99*pastaQty);       
+    const qty = dishList.map(data=>{
+        return data.qty;
     })
-
-   
+      
+    // reducing the qty in a single value
+    const reducerOfQty = (accumulator, currentValue)=>accumulator+currentValue;
+    
+    const totalQty = qty.reduce(reducerOfQty,0);
 
     const price = dishList.map(data=>{
         return Number(data.price)*data.qty;
     })
     
-    // reducing the qty in a single value
+    // reducing the price in a single value
     const reducerOfPrice = (accumulator, currentValue)=>accumulator+currentValue;
     
     const totalPrice = price.reduce(reducerOfPrice,0);
@@ -154,52 +155,19 @@ const AddToCart  = ({user,loggedIn,setLoginOpen,ingred_bruschetta,ingred_greek_s
         return (data.ingred1+data.ingred2+data.ingred3)*data.qty;
     })
     
-    // reducing the qty in a single value
+    // reducing the ingredient price in a single value
     const reducerOfIngredPrice = (accumulator, currentValue)=>accumulator+currentValue;
     
     const totalIngredPrice = ingredPrice.reduce(reducerOfIngredPrice,0);
 
     // console.log(totalIngredPrice);
-    const navigate = useNavigate();
-    const handleToken = async(token)=>{
-        // console.log(token);
-        const cart = {name: 'All Products', price: totalPrice+totalIngredPrice}
-        const response = await axios.post('http://localhost:8080/checkout ',{
-            token,
-            cart
-        })
-        console.log(response);
-        let {status}=response.data;
-        console.log(status);
-        if(status==='success'){
-            navigate('/');
-            toast('Your order has been placed successfully');
-            const uid = auth?.currentUser?.uid;
-            const dishCollectionRef = collection(db,"dishes"+uid);
-            const carts = await getDocs(dishCollectionRef);
-            for(var snap of carts.docs){
-                const dishDoc = doc(db, "dishes"+uid, snap.id);
-                await deleteDoc(dishDoc);
-            }
-        }
-        else{
-            alert('Something went wrong in checkout');
-        }
-     }
+    
+
+     
 
     return (
         <div className='cartIndex'>
-            <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable= {false}
-                pauseOnHover ={false}
-            />
+            
             <h2>Food Order</h2>
 
             {dishList.length<1 ?
@@ -252,19 +220,25 @@ const AddToCart  = ({user,loggedIn,setLoginOpen,ingred_bruschetta,ingred_greek_s
                         </div>
                     </div>
                     <div className='checkout container'><button className='buttonCheckout' onClick={handleCheckout}>CheckOut</button></div>
-                    <StripeCheckout
-                            stripeKey='pk_test_51OMvMVSJgqK34k6mA8zsNXHJxPXlZU4dWwmUufYK0Pykz3aA5V5YhBLO6niLRVWsdVfV9mEZVSeTXXPvQX69qM4200PxMPpAqo'
-                            token={handleToken}
-                            billingAddress
-                            shippingAddress
-                            name='All Products'
-                            amount={(totalPrice+totalIngredPrice) * 100}
-                        ></StripeCheckout>
                 </div>
-                
+                {showModal &&
+                <div className='overlay'/>}
+                {true&&
+                <Modal qty={totalQty} showModal={showModal} hideModal={hideModal} price={Number(totalPrice+totalIngredPrice).toFixed(2)}/>
+                 }       
             </div>
             }
-         
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable= {false}
+                pauseOnHover ={false}
+            />  
             
         </div>
     );

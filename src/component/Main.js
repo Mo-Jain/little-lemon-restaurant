@@ -7,6 +7,9 @@ import MenuItem from './MenuItem.js';
 import AddToCart from './AddToCart.js';
 import Menu from './Menu';
 import CreditCard from './CreditCard.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Order from './Order.js';
 
 
 const brus_desc = "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. Topped with chopped tomatoes, oregano and fresh bazil.";
@@ -73,6 +76,9 @@ function Main({ingred_pasta,ingred_grilled_fish,grilledIngred,setGrilledIngred,p
         }
     }
     
+    const dispatchToast = (message,propObject)=>{
+        toast(message,propObject);
+    }
 
     const[selected,setSelected] = useState("Occassion");
     
@@ -89,9 +95,11 @@ function Main({ingred_pasta,ingred_grilled_fish,grilledIngred,setGrilledIngred,p
                 <Route path="/grilled_fish" element={<MenuItem index={2} user={user} setLoginOpen={setLoginOpen} ingred={grilledIngred} setIngred={setGrilledIngred} cartQty={grilledQty} setCartQty={setGrilledQty} additional={ingred_grilled_fish} heading={"Grilled Fish"} price={"20.00"} desc={description[2]} image={images[2]}/>}/>
                 <Route path="/pasta" element={<MenuItem index={3} user={user} setLoginOpen={setLoginOpen} ingred={pastaIngred} setIngred={setPastaIngred} cartQty={pastaQty} setCartQty={setPastaQty} additional={ingred_pasta} heading={"Pasta"} price={"18.99"} desc={description[3]} image={images[3]}/>}/>
                 <Route path="/lemon_desert" element={<MenuItem index={4} user={user} setLoginOpen={setLoginOpen} ingred={lemonIngred} setIngred={setLemonIngred} cartQty={lemonQty} setCartQty={setLemonQty} additional={ingred_lemon_desert} heading={"Lemon Desert"} price={"5.99"} desc={description[4]} image={images[4]}/>}/>
-                <Route path="/cart" element={<AddToCart user={user} setLoginOpen={setLoginOpen} loggedIn={loggedIn} grilledIngred={grilledIngred} setGrilledIngred={setGrilledIngred} pastaIngred={pastaIngred} setPastaIngred={setPastaIngred} brusIngred={brusIngred} setBrusIngred={setBrusIngred} greekIngred={greekIngred} setGreekIngred={setGreekIngred} lemonIngred={lemonIngred} setLemonIngred={setLemonIngred} ingred_pasta={ingred_pasta} ingred_grilled_fish={ingred_grilled_fish} ingred_bruschetta={ingred_bruschetta} ingred_greek_salad={ingred_greek_salad} ingred_lemon_desert={ingred_lemon_desert} images={images} brusQty={brusQty} setBrusQty={setBrusQty} greekQty={greekQty} setGreekQty={setGreekQty} lemonQty={lemonQty} setLemonQty={setLemonQty} grilledQty={grilledQty} setGrilledQty={setGrilledQty} pastaQty={pastaQty} setPastaQty={setPastaQty}/>}/>
+                <Route path="/cart" element={<AddToCart dispatchToast={dispatchToast} user={user} setLoginOpen={setLoginOpen} loggedIn={loggedIn} grilledIngred={grilledIngred} setGrilledIngred={setGrilledIngred} pastaIngred={pastaIngred} setPastaIngred={setPastaIngred} brusIngred={brusIngred} setBrusIngred={setBrusIngred} greekIngred={greekIngred} setGreekIngred={setGreekIngred} lemonIngred={lemonIngred} setLemonIngred={setLemonIngred} ingred_pasta={ingred_pasta} ingred_grilled_fish={ingred_grilled_fish} ingred_bruschetta={ingred_bruschetta} ingred_greek_salad={ingred_greek_salad} ingred_lemon_desert={ingred_lemon_desert} images={images} brusQty={brusQty} setBrusQty={setBrusQty} greekQty={greekQty} setGreekQty={setGreekQty} lemonQty={lemonQty} setLemonQty={setLemonQty} grilledQty={grilledQty} setGrilledQty={setGrilledQty} pastaQty={pastaQty} setPastaQty={setPastaQty}/>}/>
                 <Route path="/menu" element={<Menu description={description} images={images} dishes={dishes} prices={prices}/>}/>
+                <Route path='/order' element={<Order/>}/>
             </Routes>
+            <ToastContainer/>
         </main>
     );
 }

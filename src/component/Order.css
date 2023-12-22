@@ -1,0 +1,70 @@
+
+.items{
+    width: 100%;
+    background-color: white;
+}
+.addToCart{
+    background-color: white;
+}
+
+.items .itemList {
+    background-color: inherit; 
+    border-top: none;
+    background-color: white;
+}
+.item{
+    padding: 0px;
+    border-radius: 10px;
+    margin: 10px 0;
+    background-color: white;
+    border: 1px solid rgb(173, 172, 172);
+}
+
+.itemValue{
+    height: 60px;
+    background-color: #e8e8e8;
+    border-bottom: 1px solid rgb(173, 172, 172);
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    display: flex;
+    gap:20px;
+}
+.itemValue span{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.itemBody{
+    padding: 5px 20px;
+}
+.itemContent{
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.itemButtons{
+    display: block;
+    width: 25%;
+}
+.itemName{
+    width: fit-content;
+}
+
+.trackButton{
+    border-radius: 5px;
+    background: #F4CE14;
+    color: black;
+}
+
+.viewButton{
+    border-radius: 5px;
+    border: 1px solid #BEAEAE;
+    background: #EDEFEE;
+    color: black;
+}   
+.itemValue .value{
+    font-weight: 300;
+    color: rgb(29, 28, 28);
+}

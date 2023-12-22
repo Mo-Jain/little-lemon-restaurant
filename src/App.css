@@ -21,7 +21,7 @@ a{
   text-decoration: none;
 }
 nav{
-  z-index: 10001;
+  z-index: 1;
 }
 nav {
   padding: 10px 13%;
@@ -544,7 +544,7 @@ span{
 }
 .dropdown-content {
   margin: 5px 0px;
-  z-index: 5000;
+  z-index: 1;
   position: absolute;
   width: 250px;
 }

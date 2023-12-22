@@ -136,7 +136,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                             >About</Link></li>
                     
                     <li><NavLink to="/booking" >Reservation</NavLink></li>
-                    <li><a>Order online</a></li>
+                    <li><NavLink to="/order" >Online orders</NavLink></li>
                     <li>{!user?
                         <a onClick={handleLogin}>Login</a>
                         :
@@ -153,7 +153,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                     <li><a onClick={() => goToPageAndScroll("highlights")}>Menu</a></li>
                     <li><a onClick={() => goToPageAndScroll("about")}>About</a></li>                    
                     <li><NavLink to="/booking" >Reservation</NavLink></li>
-                    <li><a href="#">Order online</a></li>
+                    <li><NavLink to='/order'>Online orders</NavLink></li>
                     <li>{!user?
                         <a onClick={handleLogin}>Login</a>
                         :
@@ -190,7 +190,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                         ><li>About</li></Link>
                 
                 <NavLink to="/booking" ><li>Reservation</li></NavLink>
-                <li><a href="#">Order online</a></li>
+                <li><NavLink to='/order'>Online orders</NavLink></li>
                 <li>{!user?
                     <a onClick={handleLogin}>Login</a>
                     :

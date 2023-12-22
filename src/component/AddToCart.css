@@ -163,7 +163,8 @@
 }
 .priceDetail{
     width:450px;
-    height: 370px;
+    min-height: 370px;
+    height:auto;
     background-color: white;
 }
 
@@ -189,9 +190,10 @@
 
 .checkout{
     justify-content: center;
+    padding: 10px 0;
 }
 .buttonCheckout{
-    width: 370px;
+    max-width: 370px;
     height: 40px;
     background-color: #495E57;
     color: #EDEFEE;
@@ -222,7 +224,8 @@
     background-color: white;
     width: 360px;
     padding: 30px 20px;
-    height: 150px;
+    min-height: 150px;
+    height:auto;
     display: flex;
     flex-direction: column;
     align-items: center;
