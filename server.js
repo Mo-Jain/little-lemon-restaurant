@@ -27,6 +27,7 @@ app.get('/',(req,res)=>{
 app.post('/checkout',async(req, res)=>{
     let error;
     let status;
+    
     try{
         const {cart, token}=req.body;
         const customer = await stripe.customers.create({
