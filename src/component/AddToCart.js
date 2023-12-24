@@ -2,21 +2,15 @@ import { useEffect, useState } from 'react';
 import './AddToCart.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import StripeCheckout from 'react-stripe-checkout';
-import { useNavigate} from 'react-router-dom';
 import {
     getDocs,
     collection,
-    addDoc,
     deleteDoc,
     updateDoc,
     doc,
-    setDoc,
-    getDoc
 } from "firebase/firestore";
-import { auth, db,fs } from './config/firebase';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { auth, db } from './config/firebase';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from './Modal';
 
@@ -41,7 +35,6 @@ const AddToCart  = ({user,dispatchToast}) =>{
         return uid;
     }
 
-    const uid = GetUserUid();
 
    
     const openModal = ()=>{
@@ -126,7 +119,7 @@ const AddToCart  = ({user,dispatchToast}) =>{
 
     useEffect(()=>{
         getDishList(); 
-    },[]);
+    });
 
     const handleCheckout = ()=>{
         setShowModal(true);

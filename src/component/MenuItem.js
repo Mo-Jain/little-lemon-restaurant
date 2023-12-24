@@ -37,7 +37,6 @@ export default function MenuItem({index,setLoginOpen,price,additional,desc,headi
     }
 
     const uid = GetUserUid();
-    const userId = heading+uid;
     
     
 

@@ -2,12 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Login.css'
 import logo from "./img/monochrome_logo.png";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { validateEmail } from "./utils";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css';
-import OTPInput, { ResendOTP } from "otp-input-react";
-import toast, { Toaster } from 'react-hot-toast';
+import OTPInput from "otp-input-react";
 import {
     RecaptchaVerifier,
     signInWithPhoneNumber,
@@ -26,7 +25,6 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
     const [otp,setOtp]  = useState("");
     const [flag,setFlag] = useState(false);
     const [showOTP,setShowOTP] = useState(false);
-    const [focus,setFocus] = useState(true);
     const [countryDialCode,setCountryDialCode] = useState('91');
     const [countryDialCode1,setCountryDialCode1] = useState('91');
 
@@ -35,7 +33,7 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
         if((isNaN(+input) || input.length!==12) && !validateEmail(input)){
             setValid(false);
         }else{
-            toast.success('Otp sended successfully!');
+            
             setValidInput(true);
         }
     }
@@ -51,16 +49,7 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
         setFlag(false);
         setShowOTP(false);
     }
-    function onCaptchaVerify() {
-        if(!window.recaptchaVerifier){
-            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                'size': 'invisible',
-                'callback': (response) => {
-                  onSignup();
-                }
-              });
-        }
-    }
+    
 
     const onSignup = async() => {
         if(isNaN(+input1) || input1.length!==12){
@@ -74,7 +63,6 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
                 const confirmation = await signInWithPhoneNumber(auth,input1,recaptcha);
                 console.log(confirmation);
                 setShowOTP(true);
-                toast.success('Otp sent successfully!');
             }
             catch(err){
                 console.error(err);
@@ -95,7 +83,7 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
             // .then((confirmationResult) => {
             // window.confirmationResult = confirmationResult;
             // setShowOTP(true);
-            // toast.success('Otp sended successfully!');
+
             // })
             // .catch((error) => {
             //     console.error(error);
