@@ -61,7 +61,7 @@ app.post('/checkout',async(req, res)=>{
 })
 
 
-app.listen(part,()=>{
+app.listen(port,()=>{
     console.log('your app is running on port no ',port);
 })
 

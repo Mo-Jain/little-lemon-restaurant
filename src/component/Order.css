@@ -1,18 +1,17 @@
-
-.items{
+#orderItem .items{
     width: 100%;
     background-color: white;
 }
-.addToCart{
+#orderItem{
     background-color: white;
 }
 
-.items .itemList {
+#orderItem .items .itemList {
     background-color: inherit; 
     border-top: none;
     background-color: white;
 }
-.item{
+#orderItem .item{
     padding: 0px;
     border-radius: 10px;
     margin: 10px 0;
@@ -20,7 +19,7 @@
     border: 1px solid rgb(173, 172, 172);
 }
 
-.itemValue{
+#orderItem .itemValue{
     height: 60px;
     background-color: #e8e8e8;
     border-bottom: 1px solid rgb(173, 172, 172);
@@ -29,42 +28,45 @@
     display: flex;
     gap:20px;
 }
-.itemValue span{
+#orderItem .itemValue span{
     margin: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.itemBody{
+#orderItem .itemBody{
     padding: 5px 20px;
 }
-.itemContent{
+#orderItem .itemContent{
     padding: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
 }
-.itemButtons{
+#orderItem .itemButtons{
     display: block;
     width: 25%;
 }
-.itemName{
+#orderItem .itemName{
     width: fit-content;
 }
 
-.trackButton{
+#orderItem .trackButton{
     border-radius: 5px;
     background: #F4CE14;
     color: black;
+    min-width: 100px;
 }
 
-.viewButton{
+#orderItem .viewButton{
     border-radius: 5px;
     border: 1px solid #BEAEAE;
     background: #EDEFEE;
     color: black;
+    min-width: 100px;
 }   
-.itemValue .value{
+#orderItem .itemValue .value{
     font-weight: 300;
     color: rgb(29, 28, 28);
 }

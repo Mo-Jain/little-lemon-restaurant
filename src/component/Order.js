@@ -41,9 +41,8 @@ const Order = () => {
                 </div>
             </div>
             :     
-            <div className="addToCart" >
-                
-                <div className="items">      
+            <div className="addToCart" id='orderItem'>                
+                <div className="items" >      
                     <div className='itemList'>
                         {orderList&&
                         orderList.map((item)=>{
@@ -71,6 +70,7 @@ const Item = ({item,uid}) => {
                     <span>ORDER #</span>
                     <span>TOTAL <p className="value">${item.totalPrice}</p></span>
                     <span>QUNATITY <p className="value">{item.qty}</p></span>
+
             </div>
             <div className="itemBody">
                 <p className="itemStatus">Arrving in 30 minutes</p>
@@ -87,7 +87,7 @@ const Item = ({item,uid}) => {
                             {item.ingred3>0 &&
                             <p className="itemStock">{item.ingreds[2]} - {item.ingred3}</p>}
                         </div>
-                    :
+                    :     
                         <div className="itemDetails">
                             <p className='ingredHeading' >No added Ingredients</p>
                         </div>
