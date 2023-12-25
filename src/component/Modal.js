@@ -67,7 +67,7 @@ const Modal = ({qty,price,hideModal,showModal}) => {
         try
         {
           const cart = {name: 'All Products', price}
-          const response = await axios.post('http://localhost:8080/checkout',{
+          const response = await axios.post('http://little-lemon-restaurant-web.heroku.com/checkout',{
               token,
               cart
           })
