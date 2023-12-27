@@ -649,6 +649,7 @@ span{
 @media screen and (max-width: 770px){
   .menu-icon {
     display: block;
+    cursor: pointer;
   }
  
   .nav-links {

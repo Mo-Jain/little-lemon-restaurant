@@ -52,6 +52,7 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
     
 
     const onSignup = async() => {
+        console.log(input1%910000000000);
         if(isNaN(+input1) || input1.length!==12){
             setValid1(false);
         }
@@ -60,34 +61,13 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
 
             try{
                 const recaptcha = new RecaptchaVerifier(auth,"recaptcha",{'size': 'invisible'});
-                const confirmation = await signInWithPhoneNumber(auth,input1,recaptcha);
+                const confirmation = await signInWithPhoneNumber(auth,input1%910000000000,recaptcha);
                 console.log(confirmation);
                 setShowOTP(true);
             }
             catch(err){
                 console.error(err);
             }
-
-            // onCaptchaVerify();
-            // // auth.settings.appVerificationDisabledForTesting = true;
-            // // var phoneNumber = "+16505554567";
-            // // var testVerificationCode = "123456";
-
-            // // var appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-            // //     'size': 'invisible',
-            // // });
-
-            // const appVerifier  = window.recaptchaVerifier;
-            // const formatPh = '+' + input1;
-            // signInWithPhoneNumber(auth, formatPh, appVerifier)
-            // .then((confirmationResult) => {
-            // window.confirmationResult = confirmationResult;
-            // setShowOTP(true);
-
-            // })
-            // .catch((error) => {
-            //     console.error(error);
-            // });
         }
         
        
@@ -179,7 +159,7 @@ const Login = ({open,setOpen,setLoggedIn}) =>{
                                 <div id="inputs" className="inputs"> 
                                     <OTPInput OTPLength={6} otpType="number" value={otp} onChange={setOtp} disabled={false} autoFocus className="input otp-container"></OTPInput>
                                 </div>
-                                <input type="submit" className='button otp-button' value="Verify"/>
+                                <input id='sign-in' type="submit" className='button otp-button' value="Verify"/>
                                 
                             </form>
                         </div>

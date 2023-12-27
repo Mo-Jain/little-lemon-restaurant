@@ -22,7 +22,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
     const [isLogin, setIsLogin] = useState(false);
     var user = auth?.currentUser;
 
-    const toggleMenu  = () => setMenuOpen(!menuOpen);
+    
     const refOne = useRef();
     useEffect(()=>{
         document.addEventListener("keydown",hideOnEscape,true);
@@ -56,6 +56,10 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
             },1500);
         }
     },[loggedIn])
+
+    // useEffect(()=>{
+    //     console.log(menuOpen);
+    // },[menuOpen])
 
     const handleLogin  = () =>{
         setLoginOpen(!loginOpen);
@@ -94,7 +98,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
             
             {location!==""?
             <NavLink to="/"><img src={Home} className="menu-icon" /></NavLink>: 
-            <div className="menu-icon" onClick={toggleMenu}>
+            <div className="menu-icon" onClick={() =>setMenuOpen(!menuOpen)}>
                 <div className="bar"></div>
                 <div className="bar"></div>
                 <div className="bar"></div>
@@ -190,8 +194,8 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                         ><li>About</li></Link>
                 
                 <NavLink to="/booking" ><li>Reservation</li></NavLink>
-                <li><NavLink to='/order'>Online orders</NavLink></li>
-                <li>{!user?
+                <NavLink to='/order'><li>Online orders</li></NavLink>
+                <li onClick={user?handleLogout:handleLogin}>{!user?
                     <a onClick={handleLogin}>Login</a>
                     :
                     <span onClick={handleLogout}>Logout</span>

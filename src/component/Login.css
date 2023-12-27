@@ -42,7 +42,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 30;
+    z-index: 5;
 }
 .msg-content{
     display: flex;
@@ -134,11 +134,7 @@
 .login-input input:focus{
     outline: none;
 }
-/* .placeholder{ 
-    transform: translateX(20px);
-    transform: translateY(15px);
-    transition: all 0.2s ease;
-} */
+
 .noholder{
     transform: none;
     transition: transform 0.4s ease;
@@ -160,8 +156,12 @@
     flex-direction: column;
     justify-content: center;
 }
-.otp .inputs{
+.login-form .otp #inputs{
     margin-top: 0;
+    margin-bottom: 20px;
+}
+#sign-in{
+    margin: 20px 0;
 }
 .otp p{
     margin-top: 30px;
@@ -302,16 +302,20 @@ p.valid{
         width: 100%; 
         border-radius: 0;  
     }
-    .login-form p.otp-button{
+    .login-form .otp-button{
         max-width: 400px;
         align-self: center;
     }
     .login-close{
         margin-top: 5px;
         align-self: flex-start;
+        cursor: pointer;
     }
     .login-box.validInput .login-content{
         left: -100vw;
         transition: left 0.3s ease;
+    }
+    .login-close .svg-inline--fa.fa-xmark.xmark{
+        display: block;
     }
 }

@@ -6,7 +6,7 @@ import { auth, db } from "./config/firebase";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import StripeCheckout from "react-stripe-checkout";
+import StripeCheckout from "react-stripe-checkout"; 
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -61,13 +61,14 @@ const Modal = ({qty,price,hideModal,showModal}) => {
       hideModal();
       setCheckout(false);
     }
+    
     const handleToken = async(token)=>{
         // console.log(token);
         hideModal();
         try
         {
           const cart = {name: 'All Products', price}
-          const response = await axios.post('http://little-lemon-restaurant-web.heroku.com/checkout',{
+          const response = await axios.post('https://little-lemon-restaurant-web-11a376dfc3e8.herokuapp.com/checkout',{
               token,
               cart
           })

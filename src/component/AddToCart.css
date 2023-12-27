@@ -194,6 +194,7 @@
 }
 .buttonCheckout{
     max-width: 370px;
+    width: 90%;
     height: 40px;
     background-color: #495E57;
     color: #EDEFEE;

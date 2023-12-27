@@ -90,11 +90,11 @@
 .login-input .flag-dropdown .selected-flag:hover{
     background-color: #b5b1b1d1;
 }
-.form-group label{
+.removePopup1 .form-group label{
     font-size: 14px;
     margin: auto;
 }
-.form-control{
+.removePopup1 .form-control{
     background-color: inherit;
     width: 100%;
     border: 1px solid black;
@@ -102,27 +102,27 @@
     margin: 10px 0;
     border-radius: 5px;
 }
-.form-control:focus{
+.removePopup1 .form-control:focus{
     outline: none;
 }
-.form-control.readOnly{
+.removePopup1 .form-control.readOnly{
     background-color: rgb(229, 223, 223) ;
     cursor:not-allowed;
     text-align: center;
 }
-.buttonCheckout{
+.removePopup1 .buttonCheckout{
     width: 100%;
     font-size:16px;
     height: 32px;
     border-radius: 5px;
 }
 
-.line{
+.removePopup1 .line{
     height: 1px;
     width: 100%;
     background-color: #aca2a2;
 }
-.orContainer{
+.removePopup1 .orContainer{
     display: flex;
     align-items: center;
     gap: 2px;
@@ -139,7 +139,7 @@ FontAwesomeIcon{
     margin-left: 100px;
 }
 
-.svg-inline--fa.fa-xmark.xmark{
+.removePopup1 .closeIcon .svg-inline--fa.fa-xmark.xmark{
     margin-left: 320px;
     margin-top: -20px;
 }

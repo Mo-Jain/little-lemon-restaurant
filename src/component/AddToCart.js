@@ -14,7 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from './Modal';
 
-// toast.configure();
+
 
 const AddToCart  = ({user,dispatchToast}) =>{
 
