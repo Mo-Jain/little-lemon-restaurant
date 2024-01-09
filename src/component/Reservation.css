@@ -344,21 +344,29 @@ textarea:focus{
   top:100px;
   left:40%;
 }
+.parentPopup{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
 .popup{
-  width: 40%;
+  width: 35%;
   height: max-content;
-  padding: 30px 80px;
+  padding: 30px 20px;
   background-color: #EDEFEE;
   border-radius: 8px;
   margin: auto;
   color: #495E57;
-  position: fixed;
-  bottom:180px;
-  left: 28%;
-  transition: all 1s ease-in  ;
+  transition: all 1s ease-in;
+  min-width: 320px;
 }
 .popup p{
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 button{
@@ -436,7 +444,14 @@ input[type=radio]{
 input.book {
   min-width: 160px;
 }
-
+@media screen and (max-width: 450px) {
+  .popup{
+    min-width: 250px;
+  }
+  .popup p{
+    font-size: 0.9rem;
+  }
+}
 @media screen and (max-width: 770px){
   .seating-heading{
     display: block;
@@ -547,9 +562,6 @@ input.book {
   }
   .detail_check{
     margin: 20px 0;
-   }
-   .book{
-    margin: 10px 0;
    }
   .images.mobile-view{
     display: block;

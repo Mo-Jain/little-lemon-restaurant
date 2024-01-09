@@ -54,7 +54,7 @@ nav li span:hover{
   color: #EDEFEE;
     
 }
-nav .nav-links li a{
+nav .nav-links li a,nav .nav-links li p{
   color: #495E57;
   font-weight: 700;
   padding:3px;
@@ -65,13 +65,16 @@ nav .nav-links li .active{
   background-color: #495E57;
   color: #EDEFEE;
 }
-nav .nav-links li a:hover{
+nav .nav-links li a:hover, nav .nav-links li p:hover{
   
   background-color: #495E57;
   color: #EDEFEE;
     
 }
-
+nav .nav-links li p{
+  font-weight: 700;
+  cursor: pointer;
+}
 .bar {
   width: 25px;
   height: 3px;

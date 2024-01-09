@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import './Modal.css';
-import PhoneInput from "react-phone-input-2";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import { addDoc, collection, deleteDoc, doc, getDocs, setDoc } from "firebase/firestore";
 import { auth, db } from "./config/firebase";
 import { useNavigate } from "react-router-dom";
@@ -16,10 +17,10 @@ const Modal = ({qty,price,hideModal,showModal}) => {
   const [residentialAddress, setResidentialAddress]=useState('');
   const [cartPrice,setCartPrice]=useState(price); 
   const [cartQty,setCartQty]=useState(qty)
-  const [countryDialCode,setCountryDialCode] = useState();
   const [isDisabled,setIsDisabled] = useState(false);
   const [checkOut,setCheckout] = useState(false);
-  
+  const [countryDialCode,setCountryDialCode] = useState('91');
+  const [input,setInput] = useState('');
   const navigate = useNavigate();
   const handleCashOnDelivery = async(e) =>{
       setIsDisabled(true);
@@ -54,6 +55,7 @@ const Modal = ({qty,price,hideModal,showModal}) => {
       navigate('/');
       setIsDisabled(false);
       setCheckout(false);
+      setInput(countryDialCode);
     }
 
     const handleCancel=(e)=>{
@@ -61,14 +63,17 @@ const Modal = ({qty,price,hideModal,showModal}) => {
       hideModal();
       setCheckout(false);
     }
+    // https://little-lemon-restaurant-web-11a376dfc3e8.herokuapp.com/
     
+    // console.log(auth.currentUser.phoneNumber);
+
     const handleToken = async(token)=>{
         // console.log(token);
         hideModal();
         try
         {
           const cart = {name: 'All Products', price}
-          const response = await axios.post('https://little-lemon-restaurant-web-11a376dfc3e8.herokuapp.com/checkout',{
+          const response = await axios.post('https://little-lemon-restaurant-app-4037a15d3f4a.herokuapp.com/checkout',{
               token,
               cart
           })
@@ -121,7 +126,10 @@ const Modal = ({qty,price,hideModal,showModal}) => {
               <div className="closeIcon">
                 <FontAwesomeIcon icon={faXmark} className='xmark' onClick={()=>hideModal()} />
               </div>
-              <p className='popupMsg'>Total Amount ${price}</p>
+              <p className='popupMsg'>Hello, {auth?.currentUser?.displayName}</p>
+              <p className='popupMsg'>Your total amount is ${price}</p>
+              <br/>
+              <p className='popupMsg'>Choose following payment menthods</p>
               <div className='checkout container'> <StripeCheckout
                   stripeKey='pk_test_51OMvMVSJgqK34k6mA8zsNXHJxPXlZU4dWwmUufYK0Pykz3aA5V5YhBLO6niLRVWsdVfV9mEZVSeTXXPvQX69qM4200PxMPpAqo'
                   token={handleToken}
@@ -143,20 +151,20 @@ const Modal = ({qty,price,hideModal,showModal}) => {
           <><p className='popupMsg'>Cash on delievery</p>
           <form className='form-group' onSubmit={handleCashOnDelivery}>
             <label>Mobile Number</label>
-            <PhoneInput country={'in'} countryCodeEditable={false} value={cell} required onChange={(phone, country) => {
-              setCountryDialCode(country.dialCode);
-              setCell(phone);
-            } } />
+            <PhoneInput country={'in'} value={input} countryCodeEditable={false}  onChange={(phone,country)=>{
+                setCountryDialCode(country.dialCode);
+                setInput(phone);
+            }}/>
             <br></br>
             <input type="text" className='form-control' placeholder='Residential Address'
               required onChange={(e) => setResidentialAddress(e.target.value)}
               value={residentialAddress} />
             <br></br>
-            <label for='form-control'>Total Quantity</label>
+            <label htmlFor='form-control'>Total Quantity</label>
             <input type="text" className='form-control readOnly' readOnly
               required value={cartQty} />
             <br></br>
-            <label for='form-control'>Total Price</label>
+            <label htmlFor='form-control'>Total Price</label>
             <input type="text" className='form-control readOnly' readOnly
               required value={cartPrice} />
             <br></br>

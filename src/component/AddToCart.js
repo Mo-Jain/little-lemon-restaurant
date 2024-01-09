@@ -203,7 +203,7 @@ const AddToCart  = ({user,dispatchToast}) =>{
                             <span>${totalIngredPrice}.00</span>
                         </div>
                         <div className='price'>
-                            <span>Delievry</span>
+                            <span>Delivery</span>
                             <span>Free</span>
                         </div>
                         <div className='totalPrice'>
@@ -354,15 +354,19 @@ const Item = ({dish,uid,updateHandleOk,updateAddIngredQty,updateSubIngredQty,upd
                 <span className="changeButton" onClick={handleRemove}>Remove</span>
             </div>
             {overlay &&
-            <div className='overlay'/>}
-            
-            <div className={`removePopup ${popup?"":"scaled"}`}>
-                <p className='popupMsg'>Are you sure you want to remove the item</p>
-                <div className='popupButtons'> 
-                    <button className='popupButton ok' onClick={handleOk}>OK</button>
-                    <button className='popupButton cancel' onClick={handleRemove}>Cancel</button>
+            <>
+                <div className='overlay'/>            
+                <div className='popupParent'>
+                    <div className={`removePopup ${popup?"":"scaled"}`}>
+                        <p className='popupMsg'>Are you sure you want to remove the item</p>
+                        <div className='popupButtons'> 
+                            <button className='popupButton ok' onClick={handleOk}>OK</button>
+                            <button className='popupButton cancel' onClick={handleRemove}>Cancel</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                </>
+            }
             <span className={`favoritePopup ${isFavorite?"visible":""}`}>
                     <FontAwesomeIcon icon={faCheck} className="check" />
                     Marked Favourite

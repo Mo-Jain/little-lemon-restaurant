@@ -67,14 +67,14 @@ const CreditCard = () => {
                         <h4>Credit Card Details</h4>
                         <div className='content ' >                            
                             <div className='input'>
-                                <input type="text" className={`invalid ${error && !cardNumber?"border":""}`} value={cardNumber} onChange={(e)=>setCardNumber(e.target.value)} placeholder='*Card Number'/>
+                                <input type="text" className={`invalid ${error && !cardNumber?"border":""}`} value={cardNumber} onChange={(e)=>setCardNumber(e.target.value)} maxLength={12} placeholder='*Card Number'/>
                                 {error && !cardNumber && <div>
                                 <FontAwesomeIcon icon={faTriangleExclamation} className='invalid' />
                                 <span className={`invalid ${cardNumber?"red":""}`}>Card Number required</span>
                                 </div>}
                             </div>
                             <div className='input'>                                
-                                <input type="text" value={name} className={`invalid ${error && !name?"border":""}`} onChange={(e)=>setName(e.target.value)} placeholder='*Name'/>
+                                <input type="text" value={name} className={`invalid ${error && !name?"border":""}`} onChange={(e)=>setName(e.target.value)} maxLength={20} placeholder='*Name'/>
                                 {error && !name && <div>
                                 <FontAwesomeIcon icon={faTriangleExclamation} className='invalid' />
                                 <span className={`invalid ${name?"red":""}`}>Name required</span>
@@ -84,7 +84,7 @@ const CreditCard = () => {
                         <div id="card" className='content card_content' >                            
                             <div className='input'>
                                 <p>*Expiry Date</p>
-                                <input type="text" className={`invalid expiry_date`} value={expiryDate} onChange={(e)=>setExpiryDate(e.target.value)} />
+                                <input type="text" className={`invalid expiry_date`} value={expiryDate} maxLength={7} onChange={(e)=>setExpiryDate(e.target.value)} />
                                 {error && !expiryDate && <div>
                                 <FontAwesomeIcon icon={faTriangleExclamation} className='invalid' />
                                 <span className={`invalid ${expiryDate?"red":""}`}>Expiry date required</span>
@@ -92,7 +92,7 @@ const CreditCard = () => {
                             </div>
                             <div className='input'>
                                 <p>*CVV</p>
-                                <input type="text" value={cvv} className={`invalid cvv`} onChange={(e)=>setCvv(e.target.value)}/>
+                                <input type="text" value={cvv} className={`invalid cvv`} onChange={(e)=>setCvv(e.target.value)} maxLength={4}/>
                                 {error && !cvv && <div>
                                 <FontAwesomeIcon icon={faTriangleExclamation} className='invalid' />
                                 <span className={`invalid ${cvv?"red":""}`}>CVV required</span>
@@ -126,9 +126,13 @@ const CreditCard = () => {
                     </div>
                         
                 </header>
-                {submit && <div className="popup">
-                    <p><strong>Your Reservation has been confirmed check your email</strong></p>
-                </div>}
+                {submit && 
+                <div className='popupParent'>
+                    <div className="popup">
+                        <p><strong>Your Reservation has been confirmed check your email</strong></p>
+                    </div>
+                </div>
+                }
                 {displayMsg && <div className="error-popup">
                     <p><strong> {errorMesaage}</strong></p>
                 </div>}

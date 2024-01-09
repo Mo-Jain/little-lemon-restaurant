@@ -142,7 +142,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                     <li><NavLink to="/booking" >Reservation</NavLink></li>
                     <li><NavLink to="/order" >Online orders</NavLink></li>
                     <li>{!user?
-                        <a onClick={handleLogin}>Login</a>
+                        <p onClick={handleLogin}>Login</p>
                         :
                         <span onClick={handleLogout}>Logout</span>
                         }
@@ -159,7 +159,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                     <li><NavLink to="/booking" >Reservation</NavLink></li>
                     <li><NavLink to='/order'>Online orders</NavLink></li>
                     <li>{!user?
-                        <a onClick={handleLogin}>Login</a>
+                        <p onClick={handleLogin}>Login</p>
                         :
                         <span onClick={handleLogout}>Logout</span>
                         }</li>
@@ -196,7 +196,7 @@ function Nav({setLoginOpen,loginOpen,cartItem,loggedIn,setLoggedIn,setBrusQty,se
                 <NavLink to="/booking" ><li>Reservation</li></NavLink>
                 <NavLink to='/order'><li>Online orders</li></NavLink>
                 <li onClick={user?handleLogout:handleLogin}>{!user?
-                    <a onClick={handleLogin}>Login</a>
+                    <p onClick={handleLogin}>Login</p>
                     :
                     <span onClick={handleLogout}>Logout</span>
                     }</li>
