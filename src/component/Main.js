@@ -61,7 +61,7 @@ function Main({ingred_pasta,ingred_grilled_fish,grilledIngred,setGrilledIngred,p
     const [time,setTime] = useState("Select Time");
     const [date,setDate] = useState("Select Date");
     const [seating,setSeating] = useState("Select seating");
-    const images = ["assets/greek_salad.jpg","assets/Bruchetta.jpg","assets/grilled_fish.jpg","assets/pasta.jpg","assets/lemon_dessert.jpg"]
+    const images = ["assets/greek_salad.jpeg","assets/Bruchetta.jpeg","assets/grilled_fish.jpeg","assets/pasta.jpeg","assets/lemon_dessert.jpg"]
     const dishes = ['Greek Salad','Bruschetta','Grilled Fish','Pasta','Lemon Desert'];
     const prices = ['12.99','7.99','5.99','20.00','18.99'];
 

@@ -140,7 +140,7 @@ const CreditCard = () => {
                 <section className="images">
                     <img src="assets\pasta.jpg"/>
                     <img src="assets\grilled_fish.jpg"/>
-                    <img src="assets\Mario-adrian1.jpg"/>
+                    <img src="assets\Mario-adrian1.jpeg"/>
                 </section>
                 </div>
                 <input type='submit' className={`reserve_button book `}  value="Book" />

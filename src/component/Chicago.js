@@ -10,7 +10,7 @@ export default function Chicago(){
             </div>
             
             <img className="img1" src="assets/restaurant.jpg"/>
-            <img className="img2" src="assets/restaurant_chef.jpg"/>
+            <img className="img2" src="assets/restaurant_chef.jpeg"/>
         </div>
     );
 }

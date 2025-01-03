@@ -39,7 +39,7 @@ const Reservation = ({availableTimes,occassion,setOccassion,diner,setDiner,time,
                         <h1>Reservation</h1>
                     </div>
                     <section className="images mobile-view">
-                        <img src="assets\restaurant_chef.jpg"/>
+                        <img src="assets\restaurant_chef.jpeg"/>
                         <img src="assets\restaurant.jpg"/>
                     </section>
                     <div className="reservation-dropdown">
@@ -67,9 +67,9 @@ const Reservation = ({availableTimes,occassion,setOccassion,diner,setDiner,time,
             </header>
             <div className="image_center">
                 <section className="images">
-                    <img src="assets\restaurant_chef.jpg"/>
+                    <img src="assets\restaurant_chef.jpeg"/>
                     <img src="assets\restaurant.jpg"/>
-                    <img src="assets\header.jpg"/>
+                    <img src="assets\header.jpeg"/>
                 </section>
             </div>
             <Link to="/confirmed1"><input type="submit" className={"reserve_button"} value="Reserve Table"/> </Link>

@@ -288,7 +288,7 @@ span{
 }
 .hero .img{
   grid-area: main;
-  background-image: url("/public/assets/poster.jpg");
+  background-image: url("/public/assets/poster.jpeg");
   background-size: cover;
   background-position: center;
 }
